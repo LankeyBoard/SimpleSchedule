@@ -13,6 +13,9 @@ const NavBar = () => (
             <li>
                 <Link to="/TimeOff">Request Time Off</Link>
             </li>
+            <li className="logout">
+                <Link to="/">Log Out</Link>
+            </li>
         </ul>
     </nav>
 );

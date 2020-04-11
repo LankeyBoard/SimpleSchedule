@@ -44,6 +44,9 @@ ul {
   overflow: hidden;
   background-color: #333333;
 }
+li.logout{
+  float:right
+}
 
 li {
   float: left;
@@ -57,6 +60,11 @@ li a {
   text-decoration: none;
 }
 
+
 li a:hover {
   background-color: #5781a3;
+}
+
+li.logout a:hover {
+  background-color: #a35757;
 }
