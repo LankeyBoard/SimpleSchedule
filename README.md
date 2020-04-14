@@ -1,7 +1,7 @@
 # SimpleSchedule
 
 
-<img src="logo.png" class="center" width="300" height="120">
+<img src="logo.png" class="center" width="300" height="145">
 
 Simple scheduling web app for software engineering
 
