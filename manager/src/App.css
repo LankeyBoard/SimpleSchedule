@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
-}
+html, body{
+  height: 100%;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+body > * {
+  flex-shrink: 0;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+#root{
+  flex-grow: 1;
+  display:flex;
+}
+div.App{
+  flex-grow: 1;
+  height: inherit;
+
+}
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  z-index: 100;
+}
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+
+}
+li.logout{
+  float:right
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
   color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+
+li a:hover {
+  background-color: #5781a3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+li.logout a:hover {
+  background-color: #a35757;
+}
+
+div.focus {
+  width: 50%;
+
+  margin: auto;
+  padding-top: 20px;
+}
+
+div.left_sidebar {
+  padding: 10px 10px;
+  margin-right: 10px;
+  width: 20%;
+  float: left;
+  border-right: 2px solid grey;
+  flex-grow: 1;
+}
+
+
+div.right_sidebar {
+  padding: 10px 10px;
+  margin-left: 10px;
+  width: 20%;
+  float: right;
+  border-left: 2px solid grey;
+  flex-grow: 1;
+}
+div.right_sidebar div{
+  margin: 0px 20px;
+}
+
+ul.Shift_Details{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid gray;
+}
+ul.Shift_Details li{
+  padding: 2px 4px;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+ul.Shift_Details li h3{
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+h2{
+  margin-top: 0;
+}
+p.shiftTime{
+  font-size: small;
+  background-color: #afc5d6;
+}
+
+/* #### Mobile Phones Portrait #### */
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  div.focus{
+    width: 90%;
+    float: none;
   }
-  to {
-    transform: rotate(360deg);
+
+  div.left_sidebar{
+    width: 90%;
+    float: none;
+    margin: auto;
+  }
+  div.right_sidebar{
+    width: 90%;
+    float: none;
+    margin: auto;
+  }
+  div.rbc-calendar{
+    width: inherit;
   }
 }

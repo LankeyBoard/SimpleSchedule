@@ -14,7 +14,7 @@ const Cal = ({events}) => {
         defaultDate={new Date()}
         defaultView="month"
         events={events}
-        style={{ height: "40em" }}
+        style={{ height: "25em" }}
       />
     </div>
   );

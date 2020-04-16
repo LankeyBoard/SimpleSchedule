@@ -1,9 +1,12 @@
 import React from 'react';
+import EmplyeeInfo from '../components/Employee-Info'
 
 const Info = () => (
     <>
-    <h1>Employee Info</h1>
-    <p>This will be the epmloyees basic info, pay rate, etc </p>
+    <div className = "focus">
+        <EmplyeeInfo/>
+    </div>
+    
     </>
 )
 export default Info;
