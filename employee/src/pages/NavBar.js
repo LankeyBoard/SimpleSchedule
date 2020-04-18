@@ -1,23 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => (
-    <nav>
-        <ul className="nav">
+export default (props) => {
+    const { isLoggedIn, toggled, loginCallBack } = props
+    const logText = isLoggedIn ? "Log In" : "Log Out"
+    return <nav id="navigation_container">
+        <ul className="flexbox-wrapper nav">
             <li>
-                <Link to="/">View Schedule</Link>
+                <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/">View Schedule</Link>
             </li>
             <li>
-                <Link to="/info">View Info</Link>
+                <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/info">View Info</Link>
             </li>
             <li>
-                <Link to="/TimeOff">Request Time Off</Link>
+                <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/TimeOff">Request Time Off</Link>
             </li>
-            <li className="logout">
-                <Link to="/">Log Out</Link>
+
+            {/* SPACER */}
+            <div className="flexbox-item"></div>
+
+            {/* should fire function instead... */}
+            <li onClick={toggled} className="logout">
+                <Link onClick={loginCallBack} className="flexbox-wrapper flexbox-item flexbox-centered" to="/">{logText}</Link>
             </li>
         </ul>
     </nav>
-);
-
-export default NavBar;
+}

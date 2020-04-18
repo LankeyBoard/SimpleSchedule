@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,14 +11,30 @@ import Info from './pages/EmployeeInfo'
 import NavBar from './pages/NavBar'
 import NotFoundPage from './pages/NotFoundPage'
 
-export default () => <Router>
-    <NavBar />
+export default () => {
+
+  const [isLoggedIn, changeLoginState] = useState(false)
+
+  const loginCallBackClicked = () => {
+    alert(`is user login????${isLoggedIn ? "Yes" : "No"}`)
+  }
+
+  return <Router>
+
+    <NavBar isLoggedIn={isLoggedIn} toggled={() => changeLoginState(!isLoggedIn)} loginCallBack={loginCallBackClicked}/>
+
     <div id="page-body" className="flexbox-wrapper vertical">
+
       <Switch>
+
         <Route path="/" component={HomePage} exact />
         <Route path="/info" component={Info} />
         <Route path="/timeOff" component={TimeOff} />
+
         <Route component={NotFoundPage} />
       </Switch>
+
     </div>
 </Router>
+
+}

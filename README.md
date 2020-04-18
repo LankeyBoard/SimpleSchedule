@@ -1,5 +1,10 @@
 # SimpleSchedule
 
+## Running both react and express...
+> npm run proxy
+
+ please note that you must first `npm run build` at least once before doing so.
+
 <img src="logo.png" class="center" width="300" height="120">
 
 Simple scheduling web app for software engineering
