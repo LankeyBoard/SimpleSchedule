@@ -7,16 +7,18 @@ import ScheduleDetail from '../components/Schedule-Details';
 
 const HomePage = () => (
     <>
-    <div className = "left_sidebar">
+    <div id="left_sidebar">
         <EmployeeInfo/>
     </div>
-    <div className = 'right_sidebar'>
+
+    <div id="focus" className="flexbox-item">
+        <Cal events = {events}/>
+    </div>
+
+    <div id='right_sidebar'>
         <div>
         <ScheduleDetail />
         </div>
-    </div>
-    <div className="focus">
-        <Cal events = {events}/>
     </div>
 
     </>

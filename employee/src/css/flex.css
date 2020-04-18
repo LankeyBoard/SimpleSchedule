@@ -1,0 +1,11 @@
+.flexbox-wrapper {
+    display: flex;
+}
+
+.flexbox-wrapper.vertical {
+    flex-direction: column;
+}
+
+.flexbox-wrapper > .flexbox-item {
+    flex: 1;
+}
