@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Axios from 'axios'
 
-const TimeOff = () => (
-    <>
-    <h1>Time Off Request Form</h1>
-    <p>A time off request form will display below</p>
+export default () => {
+
+    useEffect(() => {
+        Axios.get('/ping').then((axiosResponse) => {
+            debugger
+            console.log(axiosResponse.data)
+        }).catch((AxiosError) => {
+            console.log(AxiosError)
+        })
+    },
+    [])
+
+    return <>
+        <h1>Time Off Request Form</h1>
+        <p>A time off request form will display below</p>
     </>
-)
-export default TimeOff;
+}

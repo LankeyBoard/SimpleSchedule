@@ -1,24 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-
 
 const localizer = momentLocalizer(moment);
 
-const Cal = ({events}) => {
+export default ({events}) => {
   return (
-    <div className="Calendar">
-      <Calendar
-        localizer={localizer}
-        defaultDate={new Date()}
-        defaultView="month"
-        events={events}
-        style={{ height: "25em" }}
-      />
+    <div id="focus" className="flexbox-item">
+      <div className="Calendar">
+        <Calendar
+          localizer={localizer}
+          defaultDate={new Date()}
+          defaultView="month"
+          events={events}
+        />
+      </div>
     </div>
   );
 }
-
-
-export default Cal;
