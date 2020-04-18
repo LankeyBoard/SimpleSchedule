@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import './css/App.css';
 import './css/flex.css';
+import "./css/404.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
