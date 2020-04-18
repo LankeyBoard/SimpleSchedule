@@ -1,26 +1,53 @@
-import React from 'react';
-import Cal from '../components/calendar';
-import events from '../components/calendar-setup'
-import EmployeeInfo from '../components/Employee-Info';
-import ScheduleDetails from '../components/Schedule-Details';
-import ScheduleDetail from '../components/Schedule-Details';
+import React, { useEffect, useState } from 'react'
+import Axios from 'axios'
+import EmployeeInfo from './../components/Employee-Info'
+import ScheduleDetail from './../components/Schedule-Details'
+import { Calendar, momentLocalizer } from "react-big-calendar"
+import moment from "moment"
 
-const HomePage = () => (
-    <>
-    <div id="left_sidebar">
-        <EmployeeInfo/>
-    </div>
+const localizer = momentLocalizer(moment)
 
-    <div id="focus" className="flexbox-item">
-        <Cal events = {events}/>
-    </div>
+export default () => {
 
-    <div id='right_sidebar'>
-        <div>
-        <ScheduleDetail />
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        Axios.get('/getEvents').then((AxiosResponse) => {
+            const allEvents = (AxiosResponse.data.events || []).map(i => {
+                return  {
+                    start:  moment(i.start).toDate(),
+                    end:    moment(i.end).toDate(),
+                    title:  i.title
+                }
+            })
+            setEvents(allEvents)
+        }).catch((axiosError) => {
+            debugger
+            console.log(axiosError)
+        })
+    }, [])
+
+    const onSelectEvent = (eventDetails, javascriptEvent) => {
+        debugger
+        console.log(eventDetails)
+    }
+
+
+    return (
+        <div className="flexbox-wrapper flexbox-item">
+            <EmployeeInfo/>
+            <div id="focus" className="flexbox-item">
+                <div className="Calendar">
+                    <Calendar
+                        localizer={localizer}
+                        defaultDate={new Date()}
+                        defaultView="month"
+                        events={events}
+                        onSelectEvent={onSelectEvent}
+                    />
+                </div>
+            </div>
+            <ScheduleDetail />
         </div>
-    </div>
-
-    </>
-)
-export default HomePage;
+    )
+}
