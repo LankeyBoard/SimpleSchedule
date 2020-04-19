@@ -12,7 +12,7 @@ class databaseConnectionManager {
         }
     }
     // public method that will connect us to to the Mongo database instance....
-    connect = async() => {
+    async connect () {
 
         Logger.makeSpace(3)
         Logger.warn('Attempting to connect to mongo database...')

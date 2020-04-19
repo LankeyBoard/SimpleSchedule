@@ -13,7 +13,7 @@ module.exports = class ApplicationServer{
 
     _serveBuild(){
         this.app.use(express.static(path.join(__dirname, relativeBuildPath)));
-        this.app.listen(process.env.PORT || 8080, () => {
+        this.app.listen(process.env.PORT || 1234, () => {
             console.log('App server is starting...')
             this._addMiddlewares()
             this._serveRoutes()
