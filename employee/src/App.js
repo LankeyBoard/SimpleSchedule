@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage'
 import TimeOff from './pages/TimeOff'
 import Info from './pages/EmployeeInfo'
 import NavBar from './pages/NavBar'
+import CreateShift from './pages/CreateShift'
 import NotFoundPage from './pages/NotFoundPage'
 
 export default () => {
@@ -53,6 +54,7 @@ export default () => {
         <Route path="/" component={HomePage} exact />
         <Route path="/info" component={Info} />
         <Route path="/timeOff" component={TimeOff} />
+        <Route path="/createShift" component={CreateShift} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

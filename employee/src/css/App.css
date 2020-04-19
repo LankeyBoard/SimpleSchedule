@@ -129,3 +129,8 @@ p.shiftTime{
   height: 100%;
 }
 
+#create_shifts{
+  padding-top: 40px;
+  margin: auto;
+  width: 80%;
+}
