@@ -22,7 +22,7 @@ functionality, creativity and usability.
 <br>-Navigate to project folder > ./project/employee
 <br>-Update npm `npm install -g npm@latest`
 <br>-First use the command `npm run build` at least once 
-<br>-Proceed by running `npm start` 
+<br>-Proceed by running `npm run proxy`
 <br>-Navigate to browser and open http://localhost:3000 
 
 ## <a href="https://github.com/LankeyBoard/SimpleSchedule/projects/1">Team Transparency: Kanban Board</a>
