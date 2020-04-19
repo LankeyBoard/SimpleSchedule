@@ -1,5 +1,5 @@
 # Simple Schedule Application 
-<img src="logo.png" class="center" width="310" height="215">
+<img src="logo.png" class="center" width="310" height="225">
 
 This is a web application developed by Super Simple Software to allow the management 
 of calendar shifts for a particular company/enterprise. We expect it to display a 
