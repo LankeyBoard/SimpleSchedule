@@ -104,6 +104,51 @@ p.shiftTime{
   background-color: #afc5d6;
 }
 
+div.login{
+  margin: auto;
+  width: 400px;
+  border: 3px solid slategray;
+  padding: 10px;
+  align-items: flex-end;
+}
+.login *{
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+.login label input{
+  width: 300px;
+  margin: auto;
+  text-align: left;
+  padding: 5px;
+}
+.login label{
+  padding-bottom: 10px;
+}
+
+button#login{
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  transition-duration: 0.2s;
+  margin: auto;
+  display: block;
+}
+button#login:hover{
+  background-color: slategrey;
+}
+
+#loginLogo{
+  width: 200px;
+  position: fixed;
+}
+
 /* #### Mobile Phones Portrait #### */
 @media screen and (max-device-width: 480px) and (orientation: portrait){
   div.focus{

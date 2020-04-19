@@ -10,6 +10,7 @@ import TimeOff from './pages/TimeOff'
 import Info from './pages/EmployeeInfo'
 import NavBar from './pages/NavBar'
 import NotFoundPage from './pages/NotFoundPage'
+import Login from './pages/login'
 
 export default () => {
 
@@ -20,21 +21,29 @@ export default () => {
   }
 
   return <Router>
-
-    <NavBar isLoggedIn={isLoggedIn} toggled={() => changeLoginState(!isLoggedIn)} loginCallBack={loginCallBackClicked}/>
-
-    <div id="page-body" className="flexbox-wrapper vertical">
-
+    {!isLoggedIn &&
       <Switch>
-
-        <Route path="/" component={HomePage} exact />
-        <Route path="/info" component={Info} />
-        <Route path="/timeOff" component={TimeOff} />
-
+        <Route path="/" component={Login} exact />
         <Route component={NotFoundPage} />
       </Switch>
+    }
+    {isLoggedIn &&
+    <>
+      <NavBar isLoggedIn={isLoggedIn} toggled={() => changeLoginState(!isLoggedIn)} loginCallBack={loginCallBackClicked}/>
 
-    </div>
+      <div id="page-body" className="flexbox-wrapper vertical">
+      
+        <Switch>
+
+          <Route path="/" component={HomePage} exact />
+          <Route path="/info" component={Info} />
+          <Route path="/timeOff" component={TimeOff} />
+
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
+      </>
+    }
 </Router>
 
 }
