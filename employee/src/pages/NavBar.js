@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default (props) => {
-    const { isLoggedIn, toggled, loginCallBack } = props
-    const logText = isLoggedIn ? "Log In" : "Log Out"
+    const { isLoggedIn, toggled } = props
+    const logText = isLoggedIn ? "Log Out" : "Log In"
     return <nav id="navigation_container">
         <ul className="flexbox-wrapper nav">
             <li>
@@ -21,7 +21,7 @@ export default (props) => {
 
             {/* should fire function instead... */}
             <li onClick={toggled} className="logout">
-                <Link onClick={loginCallBack} className="flexbox-wrapper flexbox-item flexbox-centered" to="/">{logText}</Link>
+                <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/">{logText}</Link>
             </li>
         </ul>
     </nav>

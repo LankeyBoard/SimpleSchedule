@@ -6,9 +6,9 @@ const Logger = require("./funLogger")
 class databaseConnectionManager {
     constructor() {
         this.accountDetails = {
-            accountName: "ServiceAccount",
-            accountPw: "ServiceAccount",
-            databaseName: "SimpleSchedule"
+            accountName:    "ServiceAccount",
+            accountPw:      "ServiceAccount",
+            databaseName:   "SimpleSchedule"
         }
     }
     // public method that will connect us to to the Mongo database instance....
