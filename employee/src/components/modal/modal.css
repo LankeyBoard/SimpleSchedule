@@ -1,0 +1,73 @@
+.modal-wrapper {
+    background: white;
+    border: 1px solid #d0cccc;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.17);
+    margin: 100px auto 0;
+    transition: all 1.3s;
+    width: 72%;
+}
+.modal-header{
+    background: white;
+    height: 10px;
+    font-size: 27px;
+    padding: 5px;
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 50px;
+    padding-bottom: 70px;
+    
+}
+
+.btn-cancel, .btn-continue {
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    margin: 5px;
+    margin-top: 18px;
+    padding: 8px;
+    position: relative;
+    border-radius: 4px;
+    width: 85px;
+    float: right;
+    font-size: 13px;
+    transition-duration: 0.4s;
+}
+.btn-cancel {
+    color: black;
+    background-color: white;
+    border: 2.5px solid rgb(220, 81,60);
+}
+
+.btn-continue {
+    color: black;
+    background-color: white;
+    border: 2.5px solid rgb(57,136, 179); 
+}
+
+.btn-cancel:hover{
+    color: white;
+    background-color:  rgb(220, 81,60);
+    border: 2.5px solid rgb(220, 81,60);
+}
+
+.btn-continue:hover{
+    color: white;
+    background-color: rgb(57,136, 179);
+    border: 2.5px solid  rgb(57,136, 179); 
+}
+
+label{
+    padding: 8px
+}
+
+#morning_lbl{
+    margin: 60px;
+}
+
+#morning{
+    padding: 10px;
+}
