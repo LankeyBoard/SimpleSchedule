@@ -13,7 +13,7 @@ functionality, creativity and usability.
 - [ ] User can view calendar from a manager || employee view
 - [ ] Employee can set their availability to avoid being scheduled then
 - [x] Implement the Big-Calendar to have different calendar views
-- [ ] User is allowed to login-logout to the application 
+- [x] User is allowed to login-logout to the application 
 
 **Other functions as the project progresses**
 
@@ -34,6 +34,11 @@ more efficiently, prevent overstepping and stay organized.
 ## <a href="http://jquense.github.io/react-big-calendar/examples/index.html">Big Calendar Library Documentaion </a>
 An events calendar component built for React and made for modern browsers (read: IE10+) 
 and uses flexbox over the classic tables-ception approach.
+
+## MongoDb Dashboard Details
+accountLoginUrl: https://account.mongodb.com/account/login
+email: felipedferreira11@gmail.com
+pass: password2020
 
 ## Video Walkthrough 
 <img src='http://g.recordit.co/JIoa2M7lSa.gif' title='Video Walkthrough' width='800' height='600' alt='Video Walkthrough' />
