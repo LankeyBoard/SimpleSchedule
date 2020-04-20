@@ -15,3 +15,6 @@
     flex: 1;
 }
 
+.flexbox-wrapper > .flexbox-half-item {
+    flex: 0 50%;
+}

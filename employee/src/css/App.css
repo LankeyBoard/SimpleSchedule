@@ -1,5 +1,6 @@
 html, body, div#root {
   height: 100%;
+  background: ghostwhite;
 }
 
 body > * {
@@ -12,6 +13,9 @@ body > * {
   margin: 0;
 }
 
+input:focus {
+  outline: none;
+}
 
 nav {
   position: -webkit-sticky;
@@ -31,6 +35,13 @@ ul.nav {
 
 #page-body {
   height: calc(100vh - 50px);
+}
+
+.text-alignedLeft{
+  text-align: left;
+}
+.text-alignedCenter{
+  text-align: center;
 }
 
 /*
@@ -104,29 +115,34 @@ p.shiftTime{
   background-color: #afc5d6;
 }
 
-div.login{
+div.login {
   margin: auto;
   width: 400px;
   border: 3px solid slategray;
-  padding: 10px;
-  align-items: flex-end;
+  padding: 20px;
+  border-radius: 20px;
 }
-.login *{
-  text-align: center;
-  display: block;
-  border-radius: 5px;
+
+div.login > * {
+  margin-bottom: 10px;
 }
-.login label input{
+
+.login label input {
   width: 300px;
   margin: auto;
   text-align: left;
   padding: 5px;
 }
+.login input {
+  padding: 10px;
+}
 .login label{
   padding-bottom: 10px;
+  letter-spacing: 6px;
+  text-align: center;
 }
 
-button#login{
+button#login {
   background-color: black;
   border: none;
   color: white;
@@ -135,11 +151,14 @@ button#login{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-
   transition-duration: 0.2s;
-  margin: auto;
-  display: block;
+  width: 100%;
+  cursor: pointer;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 25px;
 }
+
 button#login:hover{
   background-color: slategrey;
 }
