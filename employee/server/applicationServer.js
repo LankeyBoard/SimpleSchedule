@@ -4,6 +4,7 @@ const { events } = require("./hardCodedData")
 const relativeBuildPath = './../build'
 const mongoConnectionManager = require('./dbConn')
 const userController = require('./routes/user')
+const Logger = require('./funLogger')
 
 module.exports = class ApplicationServer{
     constructor(){
@@ -11,10 +12,13 @@ module.exports = class ApplicationServer{
         this._serveBuild()
     }
 
+
     _serveBuild(){
         this.app.use(express.static(path.join(__dirname, relativeBuildPath)));
-        this.app.listen(process.env.PORT || 1234, () => {
-            console.log('App server is starting...')
+        this.app.listen(process.env.PORT || 8080, () => {
+
+            Logger.Warning("App server is starting...")
+
             this._addMiddlewares()
             this._serveRoutes()
             this._bindRoutes()

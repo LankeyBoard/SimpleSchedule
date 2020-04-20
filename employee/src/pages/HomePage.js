@@ -7,11 +7,17 @@ import moment from "moment"
 
 const localizer = momentLocalizer(moment)
 
-export default () => {
-
+export default (props) => {
     const [events, setEvents] = useState([])
+    const { userData } = props
+
+    let avatarUrl = ''
+    if(userData.avatar) {
+        avatarUrl = userData.avatar
+    };
 
     useEffect(() => {
+
         Axios.get('/getEvents').then((AxiosResponse) => {
             const allEvents = (AxiosResponse.data.events || []).map(i => {
                 return  {
@@ -22,20 +28,18 @@ export default () => {
             })
             setEvents(allEvents)
         }).catch((axiosError) => {
-            debugger
             console.log(axiosError)
         })
     }, [])
 
     const onSelectEvent = (eventDetails, javascriptEvent) => {
-        debugger
         console.log(eventDetails)
     }
 
 
     return (
         <div className="flexbox-wrapper flexbox-item">
-            <EmployeeInfo/>
+            <EmployeeInfo avatarUrl={avatarUrl} />
             <div id="focus" className="flexbox-item">
                 <div className="Calendar">
                     <Calendar
