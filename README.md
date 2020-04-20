@@ -13,7 +13,7 @@ functionality, creativity and usability.
 - [ ] User can view calendar from a manager || employee view
 - [ ] Employee can set their availability to avoid being scheduled then
 - [x] Implement the Big-Calendar to have different calendar views
-- [ ] User is allowed to login-logout to the application 
+- [x] User is allowed to login-logout to the application 
 
 **Other functions as the project progresses**
 
