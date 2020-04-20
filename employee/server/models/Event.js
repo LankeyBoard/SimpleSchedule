@@ -13,6 +13,14 @@ const ScheduleSchema = new mongoose.Schema({
     end: {
         type: String,
         required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    allDay: {
+        type: Boolean,
+        required: true
     }
 })
 

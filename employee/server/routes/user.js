@@ -2,6 +2,7 @@ const express = require('express')
 const userController = express.Router()
 const User = require('./../models/User')
 const UserUtil = require('./../models/UserUtil')
+
 const bcrypt = require('bcryptjs')
 
 const { check, validationResult } = require("express-validator/check")
@@ -101,6 +102,22 @@ userController.post('/authenticate', [
         console.log(error.message)
         res.status(500).send('Server error')
     }
+})
+
+// @route       Get api/users/getUsers
+// @desc        authenticate user and gets a token
+// @access      Public
+userController.get('/getUsers',async (req, res) => {
+
+    try {
+        const allUsers = await UserUtil.getAllUsers()
+        res.send({ users: allUsers })        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Server error')
+    }
+
+
 })
 
 

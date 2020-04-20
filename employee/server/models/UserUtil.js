@@ -4,7 +4,7 @@ const Settings = require('./../settings')
 const gravatar = require('gravatar')
 const User = require('./../models/User')
 
-module.exports = class UserUtility
+class UserUtility
 {
 
     // read operations...
@@ -66,3 +66,6 @@ module.exports = class UserUtility
     }
 
 }
+
+
+module.exports = UserUtility
