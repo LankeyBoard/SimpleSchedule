@@ -35,5 +35,10 @@ more efficiently, prevent overstepping and stay organized.
 An events calendar component built for React and made for modern browsers (read: IE10+) 
 and uses flexbox over the classic tables-ception approach.
 
+## MongoDb Dashboard Details
+accountLoginUrl: https://account.mongodb.com/account/login
+email: felipedferreira11@gmail.com
+pass: password2020
+
 ## Video Walkthrough 
 <img src='http://g.recordit.co/JIoa2M7lSa.gif' title='Video Walkthrough' width='800' height='600' alt='Video Walkthrough' />

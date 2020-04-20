@@ -116,8 +116,7 @@ p.shiftTime{
 }
 
 div.login {
-  margin: auto;
-  width: 400px;
+  width: 50%;
   border: 3px solid slategray;
   padding: 20px;
   border-radius: 20px;
@@ -165,7 +164,7 @@ button#login:hover{
 
 #loginLogo{
   width: 200px;
-  position: fixed;
+  height: 160px;
 }
 
 /* #### Mobile Phones Portrait #### */

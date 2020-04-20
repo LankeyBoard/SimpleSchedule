@@ -1,10 +1,13 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Settings = require('./../settings')
+const gravatar = require('gravatar')
 const User = require('./../models/User')
 
 module.exports = class UserUtility
 {
+
+    // read operations...
     static async getUserByUserId(userid)
     {
         return await User.findOne({ userid })
@@ -12,8 +15,20 @@ module.exports = class UserUtility
 
     static async getUserByEmail(email)
     {
-        return User.findOne({ email })
+        return await User.findOne({ email })
     }
+
+    static async getAllUsers() {
+        return await User.find({})
+    }
+
+    static async updateUser(user) {
+        const { userid } = user
+        const upsertData = user.toObject();
+        return await User.findOneAndUpdate({"userid": userid}, {upsertData},{upsert: true})
+    }
+
+
 
     static async passwordGen(user, plainPassword)
     {
@@ -41,4 +56,13 @@ module.exports = class UserUtility
             res.json(token)
         })
     }
+
+    static getGravatar(email) {
+        return gravatar.url(email, {
+            s: '400',
+            r: 'pg',
+            d: 'mm'
+        })
+    }
+
 }

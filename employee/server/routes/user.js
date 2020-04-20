@@ -2,7 +2,6 @@ const express = require('express')
 const userController = express.Router()
 const User = require('./../models/User')
 const UserUtil = require('./../models/UserUtil')
-const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
 
 const { check, validationResult } = require("express-validator/check")
@@ -34,11 +33,7 @@ userController.post('/', [
         }
 
         // grabbing the users gravitar
-        const avatar = gravatar.url(email, {
-            s: '400',
-            r: 'pg',
-            d: 'mm'
-        })
+        const avatar = UserUtil.getGravatar(email)
 
         // create the user object...
         user = new User({
@@ -50,6 +45,7 @@ userController.post('/', [
             role,
             password// is not yet encrypted
         })
+
 
         // encrypts the password
         await UserUtil.passwordGen(user, password)
@@ -87,6 +83,10 @@ userController.post('/authenticate', [
         if(!user) {
             res.status(400).json({ errors: [ {msg: "User with this UserId does not exist."} ] })
         }
+
+        const avatar = UserUtil.getGravatar(user.email)
+        user.avatar = avatar
+        await UserUtil.updateUser(user)
 
         const isValidPassword = await bcrypt.compare(password, user.password)
 
