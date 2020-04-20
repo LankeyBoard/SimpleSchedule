@@ -11,6 +11,11 @@
     align-items: center;
 }
 
+.flexbox-wrapper.flexbox-centeredEvenly {
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .flexbox-wrapper > .flexbox-item {
     flex: 1;
 }

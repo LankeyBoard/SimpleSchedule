@@ -7,7 +7,7 @@ const userController = require('./routes/user')
 const eventController = require('./routes/event')
 const Logger = require('./funLogger')
 
-module.exports = class ApplicationServer{
+module.exports = class ApplicationServer {
     constructor(){
         this.app = express()
         this._serveBuild()

@@ -15,12 +15,13 @@ import NotFoundPage from './pages/NotFoundPage'
 import Login from './pages/LoginPage'
 import ProtectedRoute from "./pages/ProtectedRoute"
 import TokenService from './services/tokenService'
+import { Settings } from './services/Settings'
 
 
 export default () => {
 
   const [jwt, setJwt] = useState('')
-  const [isLoggedIn, changeLoginState] = useState(false)
+  const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 

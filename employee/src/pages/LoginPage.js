@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import logo from './../images/Slogo.png'
+import { ApiService } from './../services/ApiService'
 import Axios from 'axios'
 
 const Login = (props) => {
@@ -23,21 +24,14 @@ const Login = (props) => {
         }
     }
 
-    const logInApiRequest = () => {
-        Axios.post('/api/users/authenticate', { userid, password }).then((apiResponse)=> {
-            
-            const jwt = apiResponse.data
-            newJwtNotify(jwt)
+    const logInApiRequest = async () => {
+        const jwt = await ApiService.LogIn(userid, password)
+        if(jwt.status === 200 && jwt.data) {
+            newJwtNotify(jwt.data)
             setToHome(true)
-
-        }).catch((apiError) => {
-
-            // errors is an array of { msg: string }
-            if(apiError && apiError.response && apiError.response.data && apiError.response.data.errors) {
-                setErrors(apiError.response.data.errors.map(x => x.msg))
-            }
-
-        })
+        } else if(jwt && jwt.data && jwt.data.errors) {
+            setErrors(jwt.data.errors.map(x => x.msg))
+        }
     }
     
     const _errorsBuild = () => errors.map((e,i) => <div key={e}>{i+1}.) {e}</div>)
@@ -78,7 +72,7 @@ const Login = (props) => {
                         </div>
 
 
-                        <div className="flexbox-centered flexbox-item flexbox-wrapper vertical">
+                        <div className="flexbox-centeredEvenly flexbox-item flexbox-wrapper vertical">
                             {_errorsBuild()}
                         </div>
                     </div>
