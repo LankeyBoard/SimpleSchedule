@@ -30,8 +30,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "node ./server/index.js",
-    "proxy": "concurrently \"npm run dev\" \"npm run start\""
+    "server": "node ./server/index.js",
+    "server:hmr": "node ./server/index.js",
+    "proxy": "concurrently \"npm run server\" \"npm run start\"",
+    "update": "npm install && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
