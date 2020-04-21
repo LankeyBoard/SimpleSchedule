@@ -25,7 +25,7 @@ const NotFoundPage = () => {
     return <div id="pageNotFound" className="flexbox-wrapper vertical flexbox-centered">
     <div>
         <div id="pageNotFound-img-wrapper">
-            <img src={randomImage}/>
+            <img alt="not found fun image" src={randomImage}/>
         </div>
         <h1>404: Page Not Found</h1>
     </div>

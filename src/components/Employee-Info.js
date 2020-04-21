@@ -8,7 +8,7 @@ export default (props) => {
     return <div id="left_sidebar" className="flexbox-wrapper vertical">
         <h2 className="text-alignedCenter">Employee Info</h2>
         <div className="flexbox-centered flexbox-wrapper">
-            <img width="200" src={avatarUrl} />
+            <img width="200" alt="good employee" src={avatarUrl} />
         </div>
 
         <div>
