@@ -36,8 +36,11 @@ An events calendar component built for React and made for modern browsers (read:
 and uses flexbox over the classic tables-ception approach.
 
 ## MongoDb Dashboard Details
+
 accountLoginUrl: https://account.mongodb.com/account/login
+
 email: felipedferreira11@gmail.com
+
 pass: password2020
 
 ## Video Walkthrough 
