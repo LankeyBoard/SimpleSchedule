@@ -1,0 +1,131 @@
+html, body, div#root {
+  height: 100%;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top:0;
+  z-index: 100;
+}
+
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+  height: 50px;
+}
+
+#page-body {
+  height: calc(100vh - 50px);
+}
+
+/*
+li.logout{
+  float:right
+}
+li {
+  float: left;
+}
+*/
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 0 16px;
+  text-decoration: none;
+  height: 100%;
+}
+
+
+li a:hover {
+  background-color: #5781a3;
+}
+
+li.logout a:hover {
+  background-color: #a35757;
+}
+
+#focus {
+  padding-top: 20px;
+}
+
+#left_sidebar, #right_sidebar {
+  padding: 10px;
+  flex: 0 20%;
+}
+
+#left_sidebar {
+  border-right: 2px solid grey;
+}
+#right_sidebar {
+  border-left: 2px solid grey;
+}
+
+div.right_sidebar div{
+  margin: 0px 20px;
+}
+
+ul.Shift_Details{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid gray;
+}
+ul.Shift_Details li{
+  padding: 2px 4px;
+  width: 100%;
+  border-bottom: 2px solid gray;
+}
+ul.Shift_Details li h3{
+  text-decoration: underline;
+  font-size: 1.2em;
+}
+
+h2{
+  margin-top: 0;
+}
+p.shiftTime{
+  font-size: small;
+  background-color: #afc5d6;
+}
+
+/* #### Mobile Phones Portrait #### */
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  div.focus{
+    width: 90%;
+    float: none;
+  }
+  div.left_sidebar{
+    width: 90%;
+    float: none;
+    margin: auto;
+  }
+  div.right_sidebar{
+    width: 90%;
+    float: none;
+    margin: auto;
+  }
+  div.rbc-calendar{
+    width: inherit;
+  }
+}
+
+.Calendar {
+  height: 100%;
+}
+

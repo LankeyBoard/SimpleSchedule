@@ -1,0 +1,17 @@
+.flexbox-wrapper {
+    display: flex;
+}
+
+.flexbox-wrapper.vertical {
+    flex-direction: column;
+}
+
+.flexbox-wrapper.flexbox-centered {
+    justify-content: center;
+    align-items: center;
+}
+
+.flexbox-wrapper > .flexbox-item {
+    flex: 1;
+}
+

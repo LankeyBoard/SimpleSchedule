@@ -1,4 +1,5 @@
 import React from 'react';
+
 export default (props) => {
     
     const { avatarUrl } = props
@@ -8,7 +9,12 @@ export default (props) => {
         <div className="flexbox-centered flexbox-wrapper">
             <img width="200" src={avatarUrl} />
         </div>
-        <p>Name</p>
-        <p>More info ... total hours, areas allowed to work, etc.</p>
-    </div>
+</div>
+
+// export default () => <div id="left_sidebar">
+//         <h2>Employee Info</h2>
+//         <p>Photo</p>
+//         <p>Name</p>
+//         <p>More info ... total hours, areas allowed to work, etc.</p>
+//     </div>
 }
