@@ -1,9 +1,9 @@
 import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import ScheduleDetail from'../components/Schedule-Details';
+// import ScheduleDetail from'../components/Schedule-Details';
 import AssignShifts from '../components/AssignShifts';
 import moment from "moment";
-import emplyeeDropdown from '../components/employeeDropdown';
+// import emplyeeDropdown from '../components/employeeDropdown';
 
 const events = [    {
   start:  moment().subtract(2, "hours").toDate(),
@@ -15,7 +15,7 @@ const events = [    {
   end:    moment().add(3, "hours").toDate(),
   title:  "2nd Shift"
 }];
-const localizer = momentLocalizer(moment);  
+// const localizer = momentLocalizer(moment);  
 const employees = ["Emp1", "Emp2"];
 
 

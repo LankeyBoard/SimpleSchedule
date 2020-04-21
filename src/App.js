@@ -86,6 +86,9 @@ export default () => {
       isManager = role === 'manager'
   }
 
+  console.log(jwt)
+  console.log(token)
+
   return <Router>
 
     <NavBar 
