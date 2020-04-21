@@ -4,8 +4,14 @@ class UISettings {
         return true
     }
 
+    // true means no security...
     get isLoggedInDefault() {
-        return this.isLocalHost
+        return true
+    }
+
+    get defaultRoute()
+    {
+        return this.isLocalHost ? "/" : "/"
     }
 }
 

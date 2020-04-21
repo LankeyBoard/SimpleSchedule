@@ -3,8 +3,13 @@ import Modal from '../components/modal/modal';
 
 
 class Info extends Component{
-
-    state = {show: false};
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            show: true//false
+        };
+    }
 
     showModal = () => { 
         this.setState({show: true})

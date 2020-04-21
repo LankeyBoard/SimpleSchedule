@@ -1,11 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { Settings } from './../services/Settings'
 // stole from the following exmaple
 // https://reacttraining.com/react-router/web/api/Redirect
 export default (props) => {
 
     const { isLoggedIn, children, userData, adminOnly } = props
-
+    if(Settings.isLoggedInDefault) {
+        return <>{children}</>
+    }
     const _protectedRender = isLoggedIn ? <>{children}</> : <Redirect to="/login"/>
 
     let role = ''

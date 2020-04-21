@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './modal.css';
 import DatePicker from 'react-datepicker'
+import DateComponent from './DateComponent'
 
 const Modal = (props) => {
 
@@ -21,11 +22,9 @@ const Modal = (props) => {
                         {props.children}
                         <form>
                             <div>When is this availability starting?</div>
-                            <DatePicker
-                                todayButton="Today"
-                                selected={startDate}
-                                onChange={date => setStartDate(date)}
-                            />
+                            <DatePicker todayButton="Today" selected={startDate} onChange={date => setStartDate(date)}/>
+
+                            {/*
                             <div >What shift would you rather work:</div>
                             <label id="morning_lbl">Morning
                                 <input type="radio" id="morning"></input>
@@ -33,10 +32,17 @@ const Modal = (props) => {
                             <label id="everning_lbl">Evening
                                 <input type="radio" id="evening"></input>
                             </label>
+                            */}
+
                             <div>What are your preffered days off:</div>
-                            <label>Sunday
-                                <input type="checkbox"></input>
-                            </label>
+                            <DateComponent day="Sunday"/>
+                            <DateComponent day="Monday"/>
+                            <DateComponent day="Tuesday"/>
+                            <DateComponent day="Wednesday"/>
+                            <DateComponent day="Thursday"/>
+                            <DateComponent day="Friday"/>
+                            <DateComponent day="Saturday"/>
+                            {/* 
                             <label>Monday
                                 <input type="checkbox"></input>
                             </label>
@@ -77,6 +83,7 @@ const Modal = (props) => {
                             <label>Saturday
                                 <input type="checkbox"></input>
                             </label>
+                            */}
                         </form>
                     </p>
                     <button className="btn-cancel" onClick={props.handleClose}>Cancel</button>      
