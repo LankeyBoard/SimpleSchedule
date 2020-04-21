@@ -17,13 +17,15 @@ const imageCollection = [
 
 const imageCollectionSize = imageCollection.length
 
+// taking off the alt
+// alt="404 Image"
 const NotFoundPage = () => {
     const randomInt = Math.floor(Math.random()*imageCollectionSize)
     const randomImage = imageCollection[randomInt]
     return <div id="pageNotFound" className="flexbox-wrapper vertical flexbox-centered">
     <div>
         <div id="pageNotFound-img-wrapper">
-            <img src={randomImage} alt="404 Image"/>
+            <img src={randomImage}/>
         </div>
         <h1>404: Page Not Found</h1>
     </div>

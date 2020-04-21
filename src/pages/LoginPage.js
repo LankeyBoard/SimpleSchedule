@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import logo from './../images/Slogo.png'
 import { ApiService } from './../services/ApiService'
-import Axios from 'axios'
+// import Axios from 'axios'
 
 const Login = (props) => {
     
