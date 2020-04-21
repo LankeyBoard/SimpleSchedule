@@ -7,13 +7,18 @@ const events = [{
   EmployeeName: '',
   Reason: ''
 }];
-const localizer = momentLocalizer(moment);  
+
+const localizer = momentLocalizer(moment);
 
 class TimeOff extends React.Component {
-    constructor(...args) {
-      super(...args)
-  
+    constructor(props) {
+      super(props)
       this.state = { events }
+    }
+
+    componentDidMount(){
+      debugger
+      console.dir(this.props)
     }
   
     handleSelect = ({ start, end}) => {
@@ -43,8 +48,6 @@ class TimeOff extends React.Component {
                 defaultDate={new Date()}
                 defaultView="month"
                 events={this.state.events}
-                onSelectEvent={event=> alert(event.title)}
-                onSelectEvent={event=> alert(event.title2)}
                 onSelectSlot={this.handleSelect}
                 defaultView="week"
                 />

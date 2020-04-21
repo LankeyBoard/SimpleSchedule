@@ -2,25 +2,27 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default (props) => {
-    const { isLoggedIn, toggled } = props
+    // userData && userData.role
+    const { isLoggedIn, toggled, isManager } = props
+
     const logText = isLoggedIn ? "Log Out" : "Log In"
 
-    const _LoggedInNavItems = [
-        <li key="home">
-            <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/">View Schedule</Link>
-        </li>,
-        <li key="information">
-            <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/info">View Info</Link>
-        </li>,
-        <li key="timeOff">
-            <Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/TimeOff">Request Time Off</Link>
-        </li>
-    ]
+    const getNavItems = () => {
+        const NavigationElements = []
+
+        NavigationElements.push(<li key="home"><Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/">View Schedule</Link></li>)
+
+        if(isManager) {
+            NavigationElements.push(<li key="information"><Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/info">View Info</Link></li>)
+        }
+        NavigationElements.push(<li key="timeOff"><Link className="flexbox-wrapper flexbox-item flexbox-centered" to="/TimeOff">Request Time Off</Link></li>)
+        return NavigationElements
+    }
 
 
     return <nav id="navigation_container">
                 <ul className="flexbox-wrapper nav">
-                    {isLoggedIn ? _LoggedInNavItems : null}
+                    {isLoggedIn ? getNavItems() : null}
                     {/* SPACER */}
                     <div className="flexbox-item"></div>
 

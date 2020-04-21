@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // import Axios from 'axios'
 import {
   BrowserRouter as Router,
@@ -24,6 +24,7 @@ export default () => {
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
+
 
   const toggle = (loggingAction) => {
 
@@ -75,11 +76,24 @@ export default () => {
     changeLoginState(true)
   }
 
+  const _roleDefined = !!(userData && userData.role)
+  const _isLoggedIn = isLoggedIn && _roleDefined
 
+  let role = ''
+  let isManager = false
+  if(_roleDefined) {
+      role = userData.role
+      isManager = role === 'manager'
+  }
 
   return <Router>
 
-    <NavBar isLoggedIn={isLoggedIn} toggled={toggle}/>
+    <NavBar 
+      isLoggedIn={_isLoggedIn} 
+      userData={userData} 
+      toggled={toggle}
+      isManager={isManager}
+    />
 
     <div id="page-body" className="flexbox-wrapper vertical">
       <Switch>
@@ -87,7 +101,7 @@ export default () => {
         <Route 
           path="/" 
           exact
-          render={(props) => <ProtectedRoute {...props} isLoggedIn={isLoggedIn}><HomePage userData={userData}/></ProtectedRoute>}
+          render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><HomePage userData={userData}/></ProtectedRoute>}
         />
 
         <Route 
@@ -99,13 +113,13 @@ export default () => {
         <Route 
           exact
           path="/info" 
-          render={(props) => <ProtectedRoute {...props} isLoggedIn={isLoggedIn}><Info/></ProtectedRoute>}
+          render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><Info/></ProtectedRoute>}
         />
 
         <Route 
           exact
           path="/timeOff" 
-          render={(props) => <ProtectedRoute {...props} isLoggedIn={isLoggedIn}><TimeOff/></ProtectedRoute>}
+          render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
         />
 
         <Route component={NotFoundPage} />

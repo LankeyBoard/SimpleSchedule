@@ -41,7 +41,10 @@ class UserUtility
             user: {
                 id: user.id,
                 role: user.role,
-                avatar: user.avatar
+                avatar: user.avatar,
+                email: user.email,
+                userid: user.userid,
+                userName: `${user.firstName} ${user.lastName}`
             }
         }
         return payload
