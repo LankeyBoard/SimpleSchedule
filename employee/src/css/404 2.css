@@ -1,0 +1,16 @@
+
+div#pageNotFound {
+    height: 100%;
+  }
+  
+  #pageNotFound-img-wrapper {
+    display: block;
+    max-width: 300px;
+    margin: 10px auto 20px;
+  }
+  
+  #pageNotFound-img-wrapper > img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
