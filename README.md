@@ -1,7 +1,7 @@
 # Simple Schedule Application 
 <img src="logo.png" class="center" width="310" height="225">
 
-# Build Status
+## Build Status
 ![CI](https://github.com/LankeyBoard/SimpleSchedule/workflows/CI/badge.svg)
 
 
