@@ -6,10 +6,13 @@ import { Settings } from './../services/Settings'
 export default (props) => {
 
     const { isLoggedIn, children, userData, adminOnly } = props
+    const renderChild = <>{children}</>
+    const _redirectedComponent = <Redirect to="/login"/>
+
     if(Settings.isLoggedInDefault) {
-        return <>{children}</>
+        return renderChild
     }
-    const _protectedRender = isLoggedIn ? <>{children}</> : <Redirect to="/login"/>
+    const _protectedRender = isLoggedIn ? renderChild : _redirectedComponent
 
     let role = ''
     const roleDefined = userData && userData.role
@@ -17,8 +20,8 @@ export default (props) => {
         role = userData.role
     }
 
-    if(adminOnly) {
-        return role === 'manager' ? _protectedRender : <Redirect to="/login"/>
+    if(adminOnly) { 
+        return role === 'manager' ? _protectedRender : _redirectedComponent
     }
 
     return _protectedRender

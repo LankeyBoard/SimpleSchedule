@@ -1,18 +1,11 @@
 class UISettings {
 
-    get isLocalHost() {
+    // true means no security, will stop page from redirecting to main on change...
+    // NOTE: when presenting MAKE this FALSE!
+    get isLoggedInDefault() {
         return true
     }
 
-    // true means no security...
-    get isLoggedInDefault() {
-        return false
-    }
-
-    get defaultRoute()
-    {
-        return this.isLocalHost ? "/" : "/"
-    }
 }
 
 export const Settings = new UISettings()
