@@ -1,6 +1,10 @@
 # Simple Schedule Application 
 <img src="logo.png" class="center" width="310" height="225">
 
+# Build Status
+![CI](https://github.com/LankeyBoard/SimpleSchedule/workflows/CI/badge.svg)
+
+
 This is a web application developed by Super Simple Software to allow the management 
 of calendar shifts for a particular company/enterprise. We expect it to display a 
 calendar with workers assigned shifts, information about that employee and much more. 
