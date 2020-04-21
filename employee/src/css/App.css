@@ -167,6 +167,8 @@ button#login:hover{
   height: 160px;
 }
 
+
+
 /* #### Mobile Phones Portrait #### */
 @media screen and (max-device-width: 480px) and (orientation: portrait){
   div.focus{
@@ -194,8 +196,19 @@ button#login:hover{
 
 #create_shifts{
   padding-top: 40px;
-  margin: auto;
-  width: 80%;
+  float: left;
+  width: 60%;
+}
+
+.AssignShifts{
+  float:right;
+  width: 35%;
+  position: fixed;
+  right: 0;
+  height: calc(100vh - 50px);
+}
+.AssignShifts ul li{
+  list-style-type: none;
 }
 
 
