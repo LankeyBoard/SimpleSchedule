@@ -121,7 +121,10 @@ export default () => {
           path="/timeOff" 
           render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
         />
-
+        <Route
+          path="/CreateShifts"
+          render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><CreateShift /></ProtectedRoute>}
+        />
         <Route component={NotFoundPage} />
 
       </Switch>
