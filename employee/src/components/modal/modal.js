@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './modal.css';
 import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 const Modal = (props) => {
 
@@ -8,10 +9,10 @@ const Modal = (props) => {
 
     return (
         <div>
-            <div className="modal-wrapper"
+            <div className="modal-wrapper" 
                 style={{
                     transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
+                    opacity: props.show ? '1' : '0',        
                 }}>
                 <div className="modal-header">
                     Availability Form
@@ -20,20 +21,20 @@ const Modal = (props) => {
                     <p>
                         {props.children}
                         <form>
-                            <div>When is this availability starting?</div>
-                            <DatePicker
+                            <div className="whenSt">When is this availability starting?</div>
+                            <DatePicker className="datePicker" 
                                 todayButton="Today"
                                 selected={startDate}
                                 onChange={date => setStartDate(date)}
                             />
-                            <div >What shift would you rather work:</div>
+                            <div className="whatShift">What shift would you rather work:</div>
                             <label id="morning_lbl">Morning
                                 <input type="radio" id="morning"></input>
                             </label>
                             <label id="everning_lbl">Evening
                                 <input type="radio" id="evening"></input>
                             </label>
-                            <div>What are your preffered days off:</div>
+                            <div className="prefOff">What are your prefered days off:</div>
                             <label>Sunday
                                 <input type="checkbox"></input>
                             </label>
@@ -55,7 +56,7 @@ const Modal = (props) => {
                             <label>Saturday
                                 <input type="checkbox"></input>
                             </label>
-                            <div>What are your preffered days to work:</div>
+                            <div className="prefWork">What are your prefered days to work:</div>
                             <label>Sunday
                                 <input type="checkbox"></input>
                             </label>
@@ -80,7 +81,7 @@ const Modal = (props) => {
                         </form>
                     </p>
                     <button className="btn-cancel" onClick={props.handleClose}>Cancel</button>      
-                    <button className="btn-continue">Save</button>  
+                    <button className="btn-continue" onClick={props.handleClose}>Save</button>  
                 </div>
 
             </div>
