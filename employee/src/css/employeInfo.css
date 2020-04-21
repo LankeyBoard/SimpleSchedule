@@ -1,0 +1,16 @@
+.avaiButton {
+    color: white;
+    background-color: rgb(57,136, 179); ;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+    margin: 5px;
+    margin-top: 18px;
+    padding: 8px;
+    position: relative;
+    border-radius: 4px;
+    width: 85px;
+    float: left;
+    font-size: 13px;
+    transition-duration: 0.4s;
+}
