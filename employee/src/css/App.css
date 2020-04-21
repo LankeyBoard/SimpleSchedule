@@ -197,3 +197,19 @@ button#login:hover{
   margin: auto;
   width: 80%;
 }
+
+
+.marginTop-15 {
+  margin-top: 15px;
+}
+.spacedText {
+  letter-spacing: 25px;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
+}

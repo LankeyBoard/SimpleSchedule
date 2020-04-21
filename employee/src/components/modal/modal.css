@@ -6,13 +6,16 @@
     transition: all 1.3s;
     width: 72%;
 }
-.modal-header{
-    background: white;
-    height: 10px;
+.modal-header {
     font-size: 27px;
     padding: 5px;
     margin-bottom: 1px;
     font-weight: bold;
+    border-bottom: 1px dashed black;
+    text-align: center;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+    color: darkgrey;
 }
 
 .modal-body {
@@ -70,4 +73,18 @@ label{
 
 #morning{
     padding: 10px;
+}
+
+
+.DateComponentSpacing{
+    padding: 20px 0;
+}
+
+.redLine {
+    border-bottom: 1px solid crimson;
+    color: coral;
+}
+
+.pad-bottom-15 {
+    padding-bottom: 15px;
 }

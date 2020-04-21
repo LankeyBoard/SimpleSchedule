@@ -6,7 +6,7 @@ class UISettings {
 
     // true means no security...
     get isLoggedInDefault() {
-        return true
+        return false
     }
 
     get defaultRoute()
