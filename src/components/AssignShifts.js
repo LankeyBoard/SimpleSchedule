@@ -33,7 +33,7 @@ const AssignShifts = ({events, employees}) => {
         </div>
 
 
-        <button>Assign Shifts</button>
+        <button id="shifts">Assign Shifts</button>
 
         </>
     );
