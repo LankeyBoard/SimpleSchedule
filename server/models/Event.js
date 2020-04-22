@@ -1,19 +1,30 @@
 /*
-start:  moment().toDate(),
-end:    moment().add(1, "days").toDate(),
-title:  "Felipe is testing Some title"
+interface Ievent  
+{
+    start:  Date
+    end:    Date
+    title:  String
+    allDay: Boolean
+    description: String
+    userObjectId: String
+    isTimeOff: Boolean
+    status: 'pending' | 'accepted' | 'rejected'
+}
 */
 const mongoose = require("mongoose")
 
+
+
 const ScheduleSchema = new mongoose.Schema({
     start: {
-        type: String,
+        type: Date,
         required: true
     },
     end: {
-        type: String,
+        type: Date,
         required: true
     },
+    // this would be like "Mourning Shift"
     title: {
         type: String,
         required: true
@@ -21,6 +32,24 @@ const ScheduleSchema = new mongoose.Schema({
     allDay: {
         type: Boolean,
         required: true
+    }, 
+    // description like Clean the fryer
+    description: {
+        type: String,
+        required: false
+    },
+    // _userId
+    userObjectId: {
+        type: String,
+        required: true
+    },
+    isTimeOff: {
+        type: Boolean,
+        required: true
+    },
+    status: {
+        type: String,// would hold 'pending' | 'accepted' | 'rejected'
+        required: false
     }
 })
 

@@ -53,7 +53,7 @@ userController.post('/', [
 
         // saving user object to db.
         await user.save()
-        UserUtil.signToken(UserUtil.getPayload(user), res)
+        UserUtil.signToken(UserUtil.getPayload(user), res, user)
 
     } catch (error) {
         console.log(error.message)
@@ -95,7 +95,7 @@ userController.post('/authenticate', [
             res.status(400).json({ errors: [ {msg: "Password is invalid."} ] })
         }
 
-       UserUtil.signToken(UserUtil.getPayload(user), res)
+       UserUtil.signToken(UserUtil.getPayload(user), res, user)
         
 
     } catch (error) {

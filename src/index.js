@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // adding in CSS
+import './css/modal.css';
 import './css/index.css';
 import './css/App.css';
 import './css/flex.css';
 import "./css/404.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
+
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';

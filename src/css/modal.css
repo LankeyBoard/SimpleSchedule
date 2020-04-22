@@ -2,11 +2,10 @@
     background: white;
     border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.17);
-    margin: 100px auto 0;
-    transition: all 1.3s;
-    width: 72%;
-
+    width: 75%;
+    margin: 40px auto;
 }
+
 .modal-header {
     font-size: 27px;
     padding: 5px;
@@ -63,12 +62,10 @@ input[type="checkbox"] {
     margin: 5px;
     margin-top: 18px;
     padding: 8px;
-    position: relative;
     border-radius: 4px;
-    width: 85px;
-    float: right;
     font-size: 13px;
-    transition-duration: 0.4s;
+    transition-duration: 0.8s;
+    width: 200px;
 }
 .btn-cancel {
     color: black;

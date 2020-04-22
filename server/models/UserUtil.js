@@ -50,13 +50,13 @@ class UserUtility
         return payload
     }
 
-    static signToken(payload, res)
+    static signToken(payload, res, user)
     {
         jwt.sign(payload, Settings.secret, {expiresIn: Settings.tokenExpiry}, (error, token) => {
             if(error) {
                 throw error
             }
-            res.json(token)
+            res.json({ token, user })
         })
     }
 

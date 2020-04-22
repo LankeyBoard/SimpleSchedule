@@ -18,15 +18,17 @@ export default (props) => {
 
     useEffect(() => {
 
-        Axios.get('/getEvents').then((AxiosResponse) => {
-            const allEvents = (AxiosResponse.data.events || []).map(i => {
-                return  {
-                    start:  moment(i.start).toDate(),
-                    end:    moment(i.end).toDate(),
-                    title:  i.title
-                }
-            })
-            setEvents(allEvents)
+        Axios.get('/api/events/getAllEvents').then((AxiosResponse) => {
+            if(AxiosResponse && AxiosResponse.data && Array.isArray(AxiosResponse.data.events)) {
+                const allEvents = AxiosResponse.data.events.map(i => {
+                    return  {
+                        ...i,
+                        start:  moment(i.start).toDate(),
+                        end:    moment(i.end).toDate()
+                    }
+                })
+                setEvents(allEvents)
+            }
         }).catch((axiosError) => {
             console.log(axiosError)
         })
@@ -34,6 +36,18 @@ export default (props) => {
 
     const onSelectEvent = (eventDetails, javascriptEvent) => {
         console.log(eventDetails)
+    }
+
+    // styling events conditionally...
+    const eventPropGetter = (event, start, end, isSelected) => {
+        let style = {}
+        if(event && event.isTimeOff) {
+            style = {
+                backgroundColor: 'crimson',
+                color: 'white',
+            }
+        }
+        return {style}
     }
 
 
@@ -48,6 +62,7 @@ export default (props) => {
                         defaultView="month"
                         events={events}
                         onSelectEvent={onSelectEvent}
+                        eventPropGetter={eventPropGetter}
                     />
                 </div>
             </div>

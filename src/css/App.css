@@ -1,6 +1,11 @@
 html, body, div#root {
   height: 100%;
   background: ghostwhite;
+  overflow: hidden;
+}
+
+.pointerCursor:hover {
+  cursor: pointer;
 }
 
 body > * {
@@ -78,6 +83,7 @@ li.logout a:hover {
 #left_sidebar, #right_sidebar {
   padding: 10px;
   flex: 0 20%;
+  overflow: auto;
 }
 
 #left_sidebar {
@@ -240,4 +246,43 @@ select.shiftEmployees{
 
 .italic {
   font-style: italic;
+}
+
+
+.disabledButton {
+  color: #fff;
+  background-color: crimson;
+  border-color: black;
+  opacity: .65;
+  cursor: no-drop;
+  text-decoration: line-through;
+}
+
+
+.selectedItem {
+  border: 1px dashed crimson;
+  background: coral;
+  color: ghostwhite;
+}
+
+.react-datepicker__input-container > input {
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.activeNavigation {
+  background: darkred;
+}
+
+.cardBottom {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+#page-body > div {
+  overflow: auto;
 }

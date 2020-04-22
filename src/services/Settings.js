@@ -6,6 +6,13 @@ class UISettings {
         return true
     }
 
+    get defaultUser() {
+        return {
+            userid: 'unclefifi',
+            password: 'password'
+        }
+    }
+
 }
 
 export const Settings = new UISettings()
