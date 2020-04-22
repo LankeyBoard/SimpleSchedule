@@ -66,7 +66,7 @@ export default (props) => {
                     />
                 </div>
             </div>
-            <ScheduleDetail />
+            <ScheduleDetail shifts={events} />
         </div>
     )
 }
