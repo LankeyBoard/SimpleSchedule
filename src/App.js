@@ -23,7 +23,7 @@ export default () => {
 
   // const [jwt, setJwt] = useState('')
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
-  // const [token, setToken] = useState("")
+  const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
 
@@ -108,8 +108,8 @@ export default () => {
   }
 
 
+  console.log(token)
 
-  // <AppContext.Provider value={{userData}}>
   return <AppContext.Provider value={{userData}}>
     <Router>
 
