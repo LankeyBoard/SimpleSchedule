@@ -26,20 +26,15 @@ export default () => {
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
-
-  const logInApiRequest = async (userid, password) => {
-    const jwt = await ApiService.LogIn(userid, password)
-    if(jwt.status === 200 && jwt.data) {
-      receiveNewJwt(jwt.data.token)
-      setUserData(jwt.data.user)
-    } else if(jwt && jwt.data && jwt.data.errors) {
-      console.dir(jwt)
-    }
-  }
-
   useEffect(() => {
     if(Settings.isLoggedInDefault) {
-      logInApiRequest('unclefifi', 'password')
+      const jwt = await ApiService.LogIn('unclefifi', "password")
+      if(jwt.status === 200 && jwt.data) {
+        receiveNewJwt(jwt.data.token)
+        setUserData(jwt.data.user)
+      } else if(jwt && jwt.data && jwt.data.errors) {
+        console.dir(jwt)
+      }
     }
   }, [])
 
