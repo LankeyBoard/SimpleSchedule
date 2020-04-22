@@ -62,12 +62,10 @@ input[type="checkbox"] {
     margin: 5px;
     margin-top: 18px;
     padding: 8px;
-    position: relative;
     border-radius: 4px;
-    width: 85px;
-    float: right;
     font-size: 13px;
-    transition-duration: 0.4s;
+    transition-duration: 0.8s;
+    width: 200px;
 }
 .btn-cancel {
     color: black;

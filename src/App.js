@@ -14,7 +14,7 @@ import CreateShift from './pages/CreateShift'
 import NotFoundPage from './pages/NotFoundPage'
 import Login from './pages/LoginPage'
 import ProtectedRoute from "./pages/ProtectedRoute"
-import TokenService from './services/tokenService'
+// import TokenService from './services/tokenService'
 import { Settings } from './services/Settings'
 
 export const AppContext = React.createContext()
@@ -26,15 +26,15 @@ export default () => {
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
-  useEffect(async () => {
+  useEffect(() => {
     if(Settings.isLoggedInDefault) {
-      const jwt = await ApiService.LogIn('unclefifi', "password")
-      if(jwt.status === 200 && jwt.data) {
-        receiveNewJwt(jwt.data.token)
-        setUserData(jwt.data.user)
-      } else if(jwt && jwt.data && jwt.data.errors) {
-        console.dir(jwt)
-      }
+      ApiService.LogIn('unclefifi', "password").then((axiosResponse) => {
+        const response = axiosResponse.data
+        receiveNewJwt(response.token)
+        setUserData(response.user)
+      }).catch((axiosError)=> {
+        console.dir(axiosError)
+      })
     }
   }, [])
 
@@ -87,8 +87,8 @@ export default () => {
     setJwt(jwt)
 
     debugger// fix this as above...
-    // needs to be better...
-    setUserData(TokenService.retrieveTokenData(jwt))
+    // ...needs to be better...
+    // setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
 

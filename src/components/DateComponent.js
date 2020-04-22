@@ -1,38 +1,23 @@
 import React, { useContext } from 'react'
-import { EmployeeContext } from '../pages/Availability'
+import { EmployeeContext } from './../pages/Availability'
+import { availabilitySelection } from './../enums'
 
 export default (props) => {
 
-    // day is a string like "Sunday"
-    // start, end
     const { day, start, end, selection, index } = props
     const { availability, setAvailability } = useContext(EmployeeContext)
 
     const handleSelection = (type, objectReference) => {
-        if(type === 'unavailable') {
+        if(type === availabilitySelection.unavailable) {
             objectReference.isAvailable = false
             objectReference.isAllDay    = true
-            // objectReference.startTime   = ''//: '00:00 AM',
-            // objectReference.endTime     = ''// : '12:00 PM'
-            objectReference.selection = 'unavailable'
+            objectReference.selection = type
         }
-        if(type === 'allDay') {
+        if(type === availabilitySelection.allDay) {
             objectReference.isAvailable = true
             objectReference.isAllDay = true
-            // objectReference.startTime = '00:00'
-            // objectReference.endTime = '24:00'
-            objectReference.selection = 'allDay'
+            objectReference.selection = type
         }
-        /*
-        // handled else where
-        if(type === 'dateRange') {
-            objectReference = {
-                isAvailable: true,
-                isAllDay: true,
-                startTime: objectReference.start,
-                endTime: objectReference.end
-            }
-        }*/
     }
 
     const selectedRadioInput = (day, type) => {
@@ -47,7 +32,7 @@ export default (props) => {
     const radioRangeSelected = () => {
         const _availabilityCopy = availability.slice();
         const i = availability.findIndex(o => o.day === day)
-        _availabilityCopy[i].selection = 'dateRange'
+        _availabilityCopy[i].selection = availabilitySelection.dateRange
         setAvailability(_availabilityCopy)
     }
 
@@ -56,7 +41,7 @@ export default (props) => {
         const _availabilityCopy = availability.slice();
         const _objectIndex = _availabilityCopy.findIndex(o => o.day === day)
         const _ObjectCopy = availability[_objectIndex]
-        _ObjectCopy.selection = 'dateRange'
+        _ObjectCopy.selection = availabilitySelection.dateRange
         if(isFrom) {
             _ObjectCopy.start = value
         } else {
@@ -65,20 +50,28 @@ export default (props) => {
         setAvailability(_availabilityCopy)
     }
 
+    const labelClass = "flexbox-centered flexbox-item flexbox-wrapper"
+    const getLabelClass = (selectionType) => {
+        if(selection===selectionType) {
+            return labelClass + " selectedItem"
+        }
+        return labelClass
+    }
+
 
     return <p className="flexbox-wrapper vertical">
     <h3 className="italic uppercase text-alignedCenter spacedText redLine marginTop-15 pad-bottom-15">{day}</h3>
     <div className="flexbox-centeredEvenly flexbox-wrapper DateComponentSpacing">
         
-        <label className="flexbox-centered flexbox-item flexbox-wrapper" onClick={() => selectedRadioInput(day, 'allDay')}>
-            <input tabIndex={index} checked={selection==='allDay'} className="pointerCursor" type="radio" id={day + "_A"} name={day} value="male"/>
+        <label className={getLabelClass(availabilitySelection.allDay)} onClick={() => selectedRadioInput(day, 'allDay')}>
+            <input tabIndex={index} checked={selection===availabilitySelection.allDay} className="pointerCursor" type="radio" id={day + "_A"} name={day} value="male"/>
             <label className="pointerCursor" for={day + "_A"}>All Day</label>
         </label>
 
-        <label  className="flexbox-centered flexbox-item flexbox-wrapper">
+        <label  className={getLabelClass(availabilitySelection.dateRange)}>
             <div className="flexbox-wrapper flexbox-item">
                 <span className="flexbox-centered flexbox-wrapper" style={{paddingRight: "20px", margin: '0'}}>
-                    <input tabIndex={index} onClick={radioRangeSelected} checked={selection==='dateRange'} className="pointerCursor" type="radio" id={day + "_B"} name={day} value="male"/>
+                    <input tabIndex={index} onClick={radioRangeSelected} checked={selection===availabilitySelection.dateRange} className="pointerCursor" type="radio" id={day + "_B"} name={day} value="male"/>
                 </span>
                 <label className="pointerCursor flexbox-item" for={day + "_B"}>
                     <p className="flexbox-wrapper">
@@ -93,10 +86,12 @@ export default (props) => {
                 </label>
             </div>
         </label>
-        <label className="flexbox-centered flexbox-item flexbox-wrapper" onClick={() => selectedRadioInput(day, 'unavailable')}>
-            <input tabIndex={index} checked={selection==='unavailable'} className="pointerCursor" type="radio" id={day + "_C"} name={day} value="unavailable"/>
+
+        <label className={getLabelClass(availabilitySelection.unavailable)} onClick={() => selectedRadioInput(day, 'unavailable')}>
+            <input tabIndex={index} checked={selection===availabilitySelection.unavailable} className="pointerCursor" type="radio" id={day + "_C"} name={day} value="unavailable"/>
             <label className="pointerCursor" for={day + "_C"}>Not Available</label>
         </label>
+
     </div>
 </p>
 }

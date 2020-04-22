@@ -1,9 +1,19 @@
 /*
-start:  moment().toDate(),
-end:    moment().add(1, "days").toDate(),
-title:  "Felipe is testing Some title"
+interface Ievent  
+{
+    start:  Date
+    end:    Date
+    title:  String
+    allDay: Boolean
+    description: String
+    userObjectId: String
+    isTimeOff: Boolean
+    status: 'pending' | 'accepted' | 'rejected'
+}
 */
 const mongoose = require("mongoose")
+
+
 
 const ScheduleSchema = new mongoose.Schema({
     start: {
@@ -30,7 +40,8 @@ const ScheduleSchema = new mongoose.Schema({
     },
     // _userId
     userObjectId: {
-
+        type: String,
+        required: true
     },
     isTimeOff: {
         type: Boolean,
@@ -40,7 +51,6 @@ const ScheduleSchema = new mongoose.Schema({
         type: String,// would hold 'pending' | 'accepted' | 'rejected'
         required: false
     }
-
 })
 
 module.exports = Schedule = mongoose.model('event', ScheduleSchema)

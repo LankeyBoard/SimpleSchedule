@@ -17,7 +17,6 @@ class TimeOff extends React.Component {
     }
 
     componentDidMount(){
-      debugger
       console.dir(this.props)
     }
   

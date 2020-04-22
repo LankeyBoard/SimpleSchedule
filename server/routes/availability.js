@@ -29,6 +29,9 @@ availabilityController.post('/create', [
             startingFrom
         })
 
+        // wanted to use this but did not work...
+        // await Availability.findOneAndUpdate({"userId": userId}, {upsertData},{upsert: true})
+
         // first we look for the document using the users objectId
         const existingDoc = await Availability.findOne({userId})
         if(!existingDoc) {
@@ -46,5 +49,31 @@ availabilityController.post('/create', [
         res.status(500).send('Server error')
     }
 })
+
+
+// @route       Post api/availability/create
+// @desc        Creates an availability
+// @access      Private
+availabilityController.post('/read', [
+    check('userId', 'userId is required').exists(),
+], async (req, res) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })//bad request
+    }
+    // extracting these properties from the body
+    const { userId } = req.body
+
+    try {
+
+        const _availabilityDocument = await Availability.findOne({userId})
+        res.send({ isSuccess: true, availabilityDocument: _availabilityDocument })
+
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send('Server error')
+    }
+})
+
 
 module.exports = availabilityController

@@ -12,6 +12,10 @@ const AvailabilitySchema = new mongoose.Schema({
                 type: String,
                 required: true
             },
+            dayIndex: {
+                type: Number,
+                required: true
+            },
             isAvailable: {
                 type: Boolean,
                 required: true

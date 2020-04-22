@@ -233,9 +233,35 @@ button#login:hover{
 
 
 .disabledButton {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    opacity: .65;
-    cursor: no-drop;
+  color: #fff;
+  background-color: crimson;
+  border-color: black;
+  opacity: .65;
+  cursor: no-drop;
+  text-decoration: line-through;
+}
+
+
+.selectedItem {
+  border: 1px dashed crimson;
+  background: coral;
+  color: ghostwhite;
+}
+
+.react-datepicker__input-container > input {
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.activeNavigation {
+  background: darkred;
+}
+
+.cardBottom {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
 }
