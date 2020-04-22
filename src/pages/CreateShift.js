@@ -9,7 +9,8 @@ const events = [    {
   id: '1234567890',
   start:  moment().subtract(2, "hours").toDate(),
   end:    moment().toDate(),
-  title:  "Meeting about the project"
+  title:  "Meeting about the project",
+  description: "a simple description of the shift"
 },
 {
   id: '312321321',

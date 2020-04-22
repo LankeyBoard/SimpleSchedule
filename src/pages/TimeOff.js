@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-// import ScheduleDetail from'../components/Schedule-Details';
-import { AppContext } from './../App'
+import { AppContext } from './../App';
 import moment from "moment";
 import Axios from 'axios';
 
-const TimeOff = () => {
+export default () => {
+
   const { userData } = useContext(AppContext)
   const [events, setEvents] = useState([])
 
@@ -24,32 +24,29 @@ const TimeOff = () => {
     })
   }, [])
   
-  const handleSelect = ({ start, end}) => {
-    console.dir(userData)
-    const title = window.prompt('Reason for Time Off:');
-    if (title) 
-    {
-     const newTimeOffEvent = {
-       start: moment(start).toDate(),
-       end: moment(end).toDate(),
-       title,
-       userObjectId: userData._id,
-       allDay: false
-     }
-     newTimeOffEvent.allDay = newTimeOffEvent.start.getHours() === newTimeOffEvent.end.getHours()
 
+
+  const handleSelect = ({ start, end}) => {
+
+      const title = window.prompt('Reason for Time Off:');
+      if (title) {
+      const newTimeOffEvent = {
+        start: moment(start).toDate(),
+        end: moment(end).toDate(),
+        title,
+        userObjectId: userData._id,
+        allDay: false
+      }
+      
+      newTimeOffEvent.allDay = newTimeOffEvent.start.getHours() === newTimeOffEvent.end.getHours()
       const newEvents = [...events,newTimeOffEvent]
       setEvents(newEvents)
-
       Axios.post('/api/events/timeOffRequest', newTimeOffEvent).then((axiosResponse) => {
-        debugger
-        console.dir(axiosResponse)
+          debugger
+          console.dir(axiosResponse)
       }).catch((apiError) => {
-        console.dir(apiError)
+          console.dir(apiError)
       })
-
-
-
     }
   }
 
@@ -64,20 +61,17 @@ const TimeOff = () => {
     }
   }
 
-    const localizer = momentLocalizer(moment);
-    
-    // defaultView="month"
-    return <div className="Calendar" id="time_off">
-            <Calendar
-              selectable
-              localizer={localizer}
-              defaultDate={new Date()}
-              events={events}
-              onSelectSlot={handleSelect}
-              defaultView="week"
-              eventPropGetter={eventPropGetter}
-            />
-        </div>
+  const localizer = momentLocalizer(moment);
+  // defaultView="month"
+  return <div className="Calendar" id="time_off">
+          <Calendar
+            selectable
+            localizer={localizer}
+            defaultDate={new Date()}
+            events={events}
+            onSelectSlot={handleSelect}
+            defaultView="week"
+            eventPropGetter={eventPropGetter}
+          />
+      </div>
 }
-
-export default TimeOff
