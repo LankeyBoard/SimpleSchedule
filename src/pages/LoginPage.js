@@ -27,7 +27,7 @@ const Login = (props) => {
     const logInApiRequest = async () => {
         const jwt = await ApiService.LogIn(userid, password)
         if(jwt.status === 200 && jwt.data) {
-            newJwtNotify(jwt.data)
+            newJwtNotify(jwt.data.token)
             setToHome(true)
         } else if(jwt && jwt.data && jwt.data.errors) {
             setErrors(jwt.data.errors.map(x => x.msg))

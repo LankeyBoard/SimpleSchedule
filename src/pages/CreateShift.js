@@ -6,11 +6,13 @@ import moment from "moment";
 // import emplyeeDropdown from '../components/employeeDropdown';
 
 const events = [    {
+  id: '1234567890',
   start:  moment().subtract(2, "hours").toDate(),
   end:    moment().toDate(),
   title:  "Meeting about the project"
 },
 {
+  id: '312321321',
   start:  moment().add(2, "hours").toDate(),
   end:    moment().add(3, "hours").toDate(),
   title:  "2nd Shift"
@@ -41,6 +43,18 @@ class CreateShift extends React.Component {
         })
     }
 
+    onSelectEvent = (eventPassed) => {
+
+      debugger
+      console.dir(eventPassed)
+      alert(eventPassed.title)
+
+      
+    }
+
+    
+
+
     render() {
         const localizer = momentLocalizer(moment);
         return (
@@ -50,16 +64,15 @@ class CreateShift extends React.Component {
                 selectable
                 localizer={localizer}
                 defaultDate={new Date()}
-                
                 events={this.state.events}
-                onSelectEvent={event=> alert(event.title)}
+                onSelectEvent={this.onSelectEvent}
                 onSelectSlot={this.handleSelect}
                 defaultView="week"
                 />
             </div>
             <div className="AssignShifts" id="right_sidebar">
               <h3>Assign Shifts</h3>
-              <AssignShifts events = {this.state.events} employees = {employees}/>
+              <AssignShifts events = {this.state.events} employees={employees}/>
             </div>
 
             </>       

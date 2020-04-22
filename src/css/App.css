@@ -3,6 +3,10 @@ html, body, div#root {
   background: ghostwhite;
 }
 
+.pointerCursor:hover {
+  cursor: pointer;
+}
+
 body > * {
   flex-shrink: 0;
 }
@@ -225,4 +229,13 @@ button#login:hover{
 
 .italic {
   font-style: italic;
+}
+
+
+.disabledButton {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    opacity: .65;
+    cursor: no-drop;
 }

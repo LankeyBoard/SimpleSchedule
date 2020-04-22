@@ -3,8 +3,11 @@ const path = require('path');
 const { events } = require("./hardCodedData")
 const relativeBuildPath = './../build'
 const mongoConnectionManager = require('./dbConn')
+// controllers...
 const userController = require('./routes/user')
 const eventController = require('./routes/event')
+const availabilityController = require('./routes/availability')
+
 const Logger = require('./funLogger')
 
 module.exports = class ApplicationServer {
@@ -40,6 +43,7 @@ module.exports = class ApplicationServer {
     _bindRoutes() {
         this.app.use('/api/users', userController)
         this.app.use('/api/events', eventController)
+        this.app.use('/api/availability', availabilityController)
     }
 
     _serveRoutes() {

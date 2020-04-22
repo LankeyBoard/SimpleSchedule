@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-// import Axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { ApiService } from './services/ApiService'
 import {
   BrowserRouter as Router,
   Route,
   Switch
-  // ,Redirect
 } from 'react-router-dom'
+
 import HomePage from './pages/HomePage'
 import TimeOff from './pages/TimeOff'
-import Info from './pages/EmployeeInfo'
+import { Availability } from './pages/Availability'
 import NavBar from './pages/NavBar'
 import CreateShift from './pages/CreateShift'
 import NotFoundPage from './pages/NotFoundPage'
@@ -17,6 +17,7 @@ import ProtectedRoute from "./pages/ProtectedRoute"
 import TokenService from './services/tokenService'
 import { Settings } from './services/Settings'
 
+export const AppContext = React.createContext()
 
 export default () => {
 
@@ -26,6 +27,23 @@ export default () => {
   const [userData, setUserData] = useState({})
 
 
+  const logInApiRequest = async (userid, password) => {
+    const jwt = await ApiService.LogIn(userid, password)
+    if(jwt.status === 200 && jwt.data) {
+      receiveNewJwt(jwt.data.token)
+      setUserData(jwt.data.user)
+    } else if(jwt && jwt.data && jwt.data.errors) {
+      console.dir(jwt)
+    }
+  }
+
+  useEffect(() => {
+    if(Settings.isLoggedInDefault) {
+      logInApiRequest('unclefifi', 'password')
+    }
+  }, [])
+
+
   const toggle = (loggingAction) => {
 
     if(loggingAction === 'logout') {
@@ -33,15 +51,14 @@ export default () => {
       setToken('')
     }
 
-    // ....THIS IS REGISTRATION LOGIC....
     /*
+    // .... THIS IS REGISTRATION LOGIC ....
     if(isLoggedIn===true) {
       alert('remove token from memmory...')
       changeLoginState(true)
     }
-    */
 
-    /*
+
     const newIsLoggedInState = !isLoggedIn
     changeLoginState(newIsLoggedInState)
     if(newIsLoggedInState) {
@@ -66,12 +83,16 @@ export default () => {
             })
           }
       })
-    }*/
+    }
+    */
   }
 
   const receiveNewJwt = jwt => {
     console.log(jwt)
     setJwt(jwt)
+
+    debugger// fix this as above...
+    // needs to be better...
     setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
@@ -86,52 +107,54 @@ export default () => {
       isManager = role === 'manager'
   }
 
-  console.log(jwt)
-  console.log(token)
 
-  return <Router>
 
-    <NavBar 
-      isLoggedIn={_isLoggedIn} 
-      userData={userData} 
-      toggled={toggle}
-      isManager={isManager}
-    />
+  // <AppContext.Provider value={{userData}}>
+  return <AppContext.Provider value={{userData}}>
+    <Router>
 
-    <div id="page-body" className="flexbox-wrapper vertical">
-      <Switch>
+      <NavBar 
+        isLoggedIn={_isLoggedIn} 
+        userData={userData} 
+        toggled={toggle}
+        isManager={isManager}
+      />
 
-        <Route 
-          path="/" 
-          exact
-          render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><HomePage userData={userData}/></ProtectedRoute>}
-        />
+      <div id="page-body" className="flexbox-wrapper vertical">
+        <Switch>
 
-        <Route 
-          path="/login" 
-          exact
-          render={(props) => <Login {...props} newJwtNotify={receiveNewJwt}/>}
-        />
+          <Route 
+            path="/" 
+            exact
+            render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><HomePage userData={userData}/></ProtectedRoute>}
+          />
 
-        <Route 
-          exact
-          path="/info" 
-          render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><Info/></ProtectedRoute>}
-        />
+          <Route 
+            path="/login" 
+            exact
+            render={(props) => <Login {...props} newJwtNotify={receiveNewJwt}/>}
+          />
 
-        <Route 
-          exact
-          path="/timeOff" 
-          render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
-        />
-        <Route
-          path="/CreateShifts"
-          render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><CreateShift /></ProtectedRoute>}
-        />
-        <Route component={NotFoundPage} />
+          <Route 
+            exact
+            path="/info" 
+            render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><Availability/></ProtectedRoute>}
+          />
 
-      </Switch>
-    </div>
-</Router>
+          <Route 
+            exact
+            path="/timeOff" 
+            render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
+          />
+          <Route
+            path="/CreateShifts"
+            render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><CreateShift /></ProtectedRoute>}
+          />
+          <Route component={NotFoundPage} />
+
+        </Switch>
+      </div>
+    </Router>
+</AppContext.Provider>
 
 }

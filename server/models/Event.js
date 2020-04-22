@@ -7,13 +7,14 @@ const mongoose = require("mongoose")
 
 const ScheduleSchema = new mongoose.Schema({
     start: {
-        type: String,
+        type: Date,
         required: true
     },
     end: {
-        type: String,
+        type: Date,
         required: true
     },
+    // this would be like "Mourning Shift"
     title: {
         type: String,
         required: true
@@ -21,7 +22,25 @@ const ScheduleSchema = new mongoose.Schema({
     allDay: {
         type: Boolean,
         required: true
+    }, 
+    // description like Clean the fryer
+    description: {
+        type: String,
+        required: false
+    },
+    // _userId
+    userObjectId: {
+
+    },
+    isTimeOff: {
+        type: Boolean,
+        required: true
+    },
+    status: {
+        type: String,// would hold 'pending' | 'accepted' | 'rejected'
+        required: false
     }
+
 })
 
 module.exports = Schedule = mongoose.model('event', ScheduleSchema)
