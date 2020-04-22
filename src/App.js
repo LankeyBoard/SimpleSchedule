@@ -26,7 +26,7 @@ export default () => {
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
-  useEffect(() => {
+  useEffect(async () => {
     if(Settings.isLoggedInDefault) {
       const jwt = await ApiService.LogIn('unclefifi', "password")
       if(jwt.status === 200 && jwt.data) {
