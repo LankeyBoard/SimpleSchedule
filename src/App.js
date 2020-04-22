@@ -21,7 +21,7 @@ export const AppContext = React.createContext()
 
 export default () => {
 
-  // const [jwt, setJwt] = useState('')
+  const [jwt, setJwt] = useState('')
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
   const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
@@ -109,6 +109,7 @@ export default () => {
 
 
   console.log(token)
+  console.log(jwt)
 
   return <AppContext.Provider value={{userData}}>
     <Router>
