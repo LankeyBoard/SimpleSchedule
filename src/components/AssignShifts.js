@@ -3,8 +3,6 @@ import moment from 'moment';
 // import employeeDropdown from './employeeDropdown'
 
 const AssignShifts = ({events, employees}) => {
-    var startDate
-    var endDate
     return(
         <>
         <div id="scrollable">
@@ -25,6 +23,7 @@ const AssignShifts = ({events, employees}) => {
                     )}
                     </select>
                     <textarea className="ShiftDesc" form="createShifts" value={ev.description}/>
+                    <button id={ev.title} className="delete" >delete shift</button>
                 </div> 
                 </>                                
                 )}
@@ -33,7 +32,7 @@ const AssignShifts = ({events, employees}) => {
         </div>
 
 
-        <button id="shifts">Assign Shifts</button>
+        <button id="shifts">Create Shifts</button>
 
         </>
     );

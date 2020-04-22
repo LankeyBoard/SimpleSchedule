@@ -175,10 +175,10 @@ button#login:hover{
 }
 
 textarea.ShiftDesc{
-  width: 90%;
+  width: 95%;
   margin: 5px;
   padding: 5px;
-
+  resize: vertical;
   clear: both;
 }
 
@@ -207,18 +207,26 @@ button {
               transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
+  letter-spacing: 4px;
 }
 button:hover{
-  background-color: red;
+  background-color: #a35757;
 }
 button#shifts{
   display: block;
-  
   margin: auto;
   margin-top: 10px;
   width:70%;
 }
-
+button.delete{
+  letter-spacing: initial;
+  background-color: #dbbdbd;
+  color: black;
+  padding: 0.5rem;
+}
+button.delete:hover{
+  background-color: #c18b8b;
+}
 /* #### Mobile Phones Portrait #### */
 @media screen and (max-device-width: 480px) and (orientation: portrait){
   div.focus{

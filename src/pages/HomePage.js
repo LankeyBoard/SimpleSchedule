@@ -50,10 +50,12 @@ export default (props) => {
         return {style}
     }
 
+    let shiftCount = events.length;
+
 
     return (
         <div className="flexbox-wrapper flexbox-item">
-            <EmployeeInfo avatarUrl={avatarUrl} />
+            <EmployeeInfo userData={userData} shiftCount={shiftCount} />
             <div id="focus" className="flexbox-item">
                 <div className="Calendar">
                     <Calendar
