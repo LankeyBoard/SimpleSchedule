@@ -67,7 +67,7 @@ li a {
   height: 100%;
 }
 
-
+.activeNavigation,
 li a:hover {
   background-color: #5781a3;
 }
@@ -257,9 +257,8 @@ button#login:hover{
   border: 1px solid lightgray;
 }
 
-.activeNavigation {
-  background: darkred;
-}
+
+
 
 .cardBottom {
   width: 200px;
