@@ -21,9 +21,9 @@ export const AppContext = React.createContext()
 
 export default () => {
 
-  const [jwt, setJwt] = useState('')
+  // const [jwt, setJwt] = useState('')
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
-  const [token, setToken] = useState("")
+  // const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
 
