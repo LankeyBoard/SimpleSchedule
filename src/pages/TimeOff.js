@@ -44,7 +44,6 @@ class TimeOff extends React.Component {
                 defaultView="week"
                 events={this.state.events}
                 onSelectSlot={this.handleSelect}
-                defaultView="week"
                 />
             </div>            
         );
