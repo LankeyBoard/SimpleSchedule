@@ -91,7 +91,10 @@ export const Availability = () => {
         minute: number
     }
      */
-    const toStringTime = startEndObjectRef => {
+    const toStringTime = (startEndObjectRef, selectionType) => {
+        if(selectionType !== availabilitySelection.dateRange) {
+            return ''
+        }
         const { hour, minute } = startEndObjectRef;
         const _inject0 = timeNum => timeNum <= 9 ? "0"+timeNum : timeNum
         return _inject0(hour)+":"+_inject0(minute)
@@ -104,8 +107,8 @@ export const Availability = () => {
                 const _availability = apiResponse.data.availabilityDocument.availability.map(o => {
                     return {
                         ...o,
-                        start: toStringTime(o.start),
-                        end: toStringTime(o.end),
+                        start: toStringTime(o.start, o.selection),
+                        end: toStringTime(o.end, o.selection),
                     }
                 })
                 setAvailability(_availability)
