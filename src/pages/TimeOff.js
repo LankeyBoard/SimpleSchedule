@@ -1,13 +1,14 @@
 import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import ScheduleDetail from'../components/Schedule-Details';
+//import ScheduleDetail from'../components/Schedule-Details';
 import moment from "moment";
 
 const events = [{
+  EmployeeName: '',
   Reason: ''
 }];
 
-const localizer = momentLocalizer(moment);
+//const localizer = momentLocalizer(moment);
 
 class TimeOff extends React.Component {
     constructor(props) {
@@ -15,12 +16,9 @@ class TimeOff extends React.Component {
       this.state = { events }
     }
 
-    componentDidMount(){
-      console.dir(this.props)
-    }
-  
     handleSelect = ({ start, end}) => {
-      const title = window.prompt('Reason for Time Off:')
+      const title = window.prompt('Employee Name:')
+      const title2 = window.prompt('Reason for Time Off:')
       if (title)
         this.setState({
           events: [
@@ -28,7 +26,8 @@ class TimeOff extends React.Component {
             {
               start,
               end,
-              title
+              title,
+              title2
             },
           ],
         })
@@ -42,7 +41,7 @@ class TimeOff extends React.Component {
                 selectable
                 localizer={localizer}
                 defaultDate={new Date()}
-                defaultView="month"
+                defaultView="week"
                 events={this.state.events}
                 onSelectSlot={this.handleSelect}
                 defaultView="week"
