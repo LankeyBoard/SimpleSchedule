@@ -113,6 +113,7 @@ h2{
 p.shiftTime{
   font-size: small;
   background-color: #afc5d6;
+  padding: 2px 4px;
 }
 
 div.login {
@@ -167,8 +168,22 @@ button#login:hover{
   height: 160px;
 }
 
+textarea.ShiftDesc{
+  width: 90%;
+  margin: 5px;
+  padding: 5px;
 
+  clear: both;
+}
 
+select.shiftEmployees{
+  clear:right;
+}
+
+#scrollable{
+  overflow: auto;
+  max-height: 90%;
+}
 /* #### Mobile Phones Portrait #### */
 @media screen and (max-device-width: 480px) and (orientation: portrait){
   div.focus{

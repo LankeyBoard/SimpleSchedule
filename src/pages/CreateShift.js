@@ -8,7 +8,8 @@ import moment from "moment";
 const events = [    {
   start:  moment().subtract(2, "hours").toDate(),
   end:    moment().toDate(),
-  title:  "Meeting about the project"
+  title:  "Meeting about the project",
+  description: "a simple description of the shift"
 },
 {
   start:  moment().add(2, "hours").toDate(),
