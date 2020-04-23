@@ -12,7 +12,7 @@ export default (props) => {
     const { userData } = props
 
     let avatarUrl = ''
-    if(userData.avatar) {
+    if(userData && userData.avatar) {
         avatarUrl = userData.avatar
     };
 

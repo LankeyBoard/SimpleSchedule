@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../css/employeInfo.css'
+import { AppContext } from './../App';
 
 export default (props) => {
-    
+
+    debugger
+    const { userData } = useContext(AppContext)    
     const { avatarUrl } = props
 
     return <div id="left_sidebar" className="flexbox-wrapper vertical">

@@ -285,3 +285,9 @@ select.shiftEmployees{
 #page-body > div {
   overflow: auto;
 }
+
+.imageLocation {
+    display: block;
+    height: 100%;
+    margin-left: auto;
+}
