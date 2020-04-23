@@ -1,10 +1,11 @@
+
 export default class EventService
 {
-    static getEventStyle(eventRef) {
-        
+
+  static getEventStyle(eventRef) {
         // default event, no style
         let style = {}
-        
+
         // time off events are red
         if(eventRef && eventRef.isTimeOff) {
             return { style: {
@@ -31,7 +32,7 @@ export default class EventService
                   background: 'palegoldenrod',
                   color: 'black'
                 }
-              }
+            }
         }
 
         return {style}

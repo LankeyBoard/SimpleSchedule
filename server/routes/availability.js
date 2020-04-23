@@ -64,7 +64,6 @@ availabilityController.post('/read', [
     }
 
     // extracting these properties from the body
-    const { userId } = req.body
 
     try {
 

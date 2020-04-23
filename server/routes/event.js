@@ -131,6 +131,7 @@ eventController.post('/assignShifts', [
 
 
 
+
 // @route       Post /api/events/timeOffRequest
 // @desc        Used to make a request for timeOff
 // @access      Public
@@ -138,22 +139,23 @@ eventController.post('/timeOffRequest', [
     check('start', 'start is required').exists(),
     check('end', 'end is required').exists(),
     check('title', "title is required").exists(),
-    check('allDay', 'allDay is required').exists()
-    // check('userObjectId', "userObjectId is required").exists(),
+    check('allDay', 'allDay is required').exists(),
+    check('userObjectId', "userObjectId is required").exists(),
 ], async (req, res) => {
     try {
+
         const errors = validationResult(req)
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })//bad request
         }
         // extracting these properties from the body...
-        const { start, end, title, allDay } = req.body
+        const { start, end, title, allDay, userObjectId } = req.body
         const _event = new Event({
             title,
             start: new Date(start), 
             end: new Date(end), 
             allDay,
-            userObjectId: "none",
+            userObjectId: userObjectId,
             status: 'pending',
             description: 'time off request',
             isTimeOff: true
@@ -180,6 +182,34 @@ eventController.get('/timeOffRequestRead', async (req, res) => {
     }
 })
 
+// @route       Get /api/events/viewTimeOffRequests
+// @desc        Used to make a request for timeOff
+// @access      Public
+eventController.get('/viewTimeOffRequests', async (req, res) => {
+    try {
+        let allTimeOffRequests = await (await Event.find({isTimeOff: true}))
+        allTimeOffRequests = allTimeOffRequests.map(o => o.toObject())
+        let allUsers = await UserUtil.getAllUsers()
+        allUsers = allUsers.map(o => o.toObject())
+        const userDictionary = allUsers.reduce((prev, current)=> {
+            prev[current._id] = current.firstName + " " + current.lastName
+            return prev
+        }, {})
+        const timeOffEvents = allTimeOffRequests.map(e => {
+            return {
+                ...e,
+                fullName: userDictionary[e.userObjectId]
+            }
+        })
+        res.send({ isSuccess: true, timeOffEvents })
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send('Server error')
+    }
+})
+
+
+
 
 // @route       Get /api/events/deleteEvent
 // @desc        Used to make a request for timeOff
@@ -192,14 +222,40 @@ eventController.post('/deleteEvent', [
         if(!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })//bad request
         }
-        // extracting these properties from the body...
         const { eventid } = req.body
-
-        console.log(eventid)
-        console.log(typeof eventid)
-
-        // const filter = {_id: eventid}
         await Event.findByIdAndDelete(eventid)
+        res.send({ isSuccess: true, documentId: eventid })
+
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send('Server error')
+    }    
+})
+
+
+// @route       Get /api/events/timeOffAction
+// @desc        Used to make a request for timeOff
+// @access      Public
+eventController.post('/timeOffAction', [
+    check('eventid', 'eventid is required').exists(),
+    check('status','actionType is required').exists()
+],async (req, res) => {
+    try {
+        const errors = validationResult(req)
+        if(!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })//bad request
+        }
+        
+        const { eventid, status } = req.body
+        const filter = { _id: eventid }
+
+
+        const existing = await Event.findById(eventid)
+        const _existing = existing.toObject()
+        const title = _existing.title + " (" + status + " time off request)"
+        const change = { status, title }
+
+        await Event.findOneAndUpdate(filter, change)
         res.send({ isSuccess: true, documentId: eventid })
 
     } catch (error) {

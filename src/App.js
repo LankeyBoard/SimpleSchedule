@@ -98,7 +98,7 @@ export default () => {
       isManager = role === 'manager'
   }
 
-  return <AppContext.Provider value={{userData}}>
+  return <AppContext.Provider value={{userData, setUserData}}>
     <Router>
 
       <NavBar 

@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const { events } = require("./hardCodedData")
 const relativeBuildPath = './../build'
