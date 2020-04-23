@@ -7,8 +7,8 @@ import { ApiService } from './../services/ApiService'
 const Login = (props) => {
     
     const { newJwtNotify } = props
-    const [userid, setUserId] = useState('unclefifi')
-    const [password, setPassword] = useState('password')
+    const [userid, setUserId] = useState('')
+    const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
     const [isRedirectingHome, setToHome] = useState(false)
 
@@ -60,7 +60,7 @@ const Login = (props) => {
                                     <label className="flexbox-item" for="pw">Password</label>
                                     <input 
                                         className="flexbox-item"
-                                        type="text" 
+                                        type="password" 
                                         id="pw" 
                                         placeholder="password"
                                         value={password}

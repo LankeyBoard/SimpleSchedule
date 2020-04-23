@@ -11,10 +11,10 @@ export default (props) => {
     const [events, setEvents] = useState([])
     const { userData } = props
 
-    let avatarUrl = ''
-    if(userData.avatar) {
-        avatarUrl = userData.avatar
-    };
+    // let avatarUrl = ''
+    // if(userData.avatar) {
+    //     avatarUrl = userData.avatar
+    // };
 
     useEffect(() => {
 
@@ -50,10 +50,12 @@ export default (props) => {
         return {style}
     }
 
+    let shiftCount = events.length;
+
 
     return (
         <div className="flexbox-wrapper flexbox-item">
-            <EmployeeInfo avatarUrl={avatarUrl} />
+            <EmployeeInfo userData={userData} shiftCount={shiftCount} />
             <div id="focus" className="flexbox-item">
                 <div className="Calendar">
                     <Calendar
@@ -66,7 +68,7 @@ export default (props) => {
                     />
                 </div>
             </div>
-            <ScheduleDetail />
+            <ScheduleDetail shifts={events} />
         </div>
     )
 }
