@@ -13,6 +13,7 @@ const CreateShift = () =>
   // const [fetchNewData, setFetchNewData] = useState(true)
   const [events, setEvents] = useState([])
   const [users, setUsers] = useState([])
+  const [availabilities, setAvailabilities] = useState([])
 
     // when creating a shift...
     const handleSelect = ({ start, end }) => {
@@ -49,6 +50,7 @@ const CreateShift = () =>
 
     useEffect(() => {
       Axios.get('/api/events/createShiftRead').then((apiResponse) => {
+        debugger
           const _unassigedEvents = apiResponse.data.events.map(o => {
             return {
               ...o,
@@ -59,7 +61,8 @@ const CreateShift = () =>
 
           setEvents(_unassigedEvents)
           setUsers(apiResponse.data.users)
-  
+          setAvailabilities(apiResponse.data.availabilities)
+          
         }).catch((apiError) => {
           console.dir(apiError)
         })

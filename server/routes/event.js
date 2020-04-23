@@ -1,6 +1,7 @@
 const express = require('express')
 const eventController = express.Router()
 const Event = require('./../models/Event')
+const Availability = require('./../models/Availability')
 const EventUtil = require('./../models/EventUtil')
 const UserUtil = require('./../models/UserUtil')
 const { check, validationResult } = require("express-validator/check")
@@ -83,9 +84,10 @@ eventController.get('/getAllEvents', async (req, res) => {
 // @access      Public
 eventController.get('/createShiftRead', async (req, res) => {
     try {
+        const availabilities = await Availability.find({})
         const events = await EventUtil.getAllUnassigedEvents()
         const users = await UserUtil.getAllUsers()
-        res.send({ isSuccess: true, events, users })
+        res.send({ isSuccess: true, events, users, availabilities })
     } catch (error) {
         console.log(error.message)
         res.status(500).send('Server error')
