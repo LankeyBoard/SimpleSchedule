@@ -10,6 +10,10 @@ class EventUtility
         return await Event.find({})
     }
 
+    static async getAllUnassigedEvents() {
+        return await Event.find({userObjectId: '', isTimeOff: false})
+    }
+
     static async Save(start, end, title, allDay) {
         const _event = new Event({
             start, 
@@ -19,9 +23,6 @@ class EventUtility
         })
         await _event.save()
     }
-
-
-
 }
 
 

@@ -21,10 +21,9 @@ import { Settings } from './services/Settings'
 export const AppContext = React.createContext()
 
 export default () => {
-
-  const [jwt, setJwt] = useState('')
+  // const [jwt, setJwt] = useState('')
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
-  const [token, setToken] = useState("")
+  // const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export default () => {
 
     if(loggingAction === 'logout') {
       changeLoginState(!isLoggedIn)
-      setToken('')
+      // setToken('')
     }
 
     /*
@@ -84,7 +83,7 @@ export default () => {
   }
 
   const receiveNewJwt = jwt => {
-    setJwt(jwt)
+    // setJwt(jwt)
     setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
@@ -98,10 +97,6 @@ export default () => {
       role = userData.role
       isManager = role === 'manager'
   }
-
-
-  console.log(token)
-  console.log(jwt)
 
   return <AppContext.Provider value={{userData}}>
     <Router>

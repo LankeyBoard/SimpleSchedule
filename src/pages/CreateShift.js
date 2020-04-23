@@ -1,79 +1,94 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-// import ScheduleDetail from'../components/Schedule-Details';
 import AssignShifts from '../components/AssignShifts';
-import moment from "moment";
-// import emplyeeDropdown from '../components/employeeDropdown';
+import moment from "moment"
+import EventService from './../services/EventService'
+import Axios from 'axios'
 
-const events = [{
-  id: '1234567890',
-  start:  moment().subtract(2, "hours").toDate(),
-  end:    moment().toDate(),
-  title:  "Meeting about the project",
-  description: "a simple description of the shift"
-},
+// useContext
+export const ShiftContext = React.createContext()
+
+const CreateShift = () => 
 {
-  id: '312321321',
-  start:  moment().add(2, "hours").toDate(),
-  end:    moment().add(3, "hours").toDate(),
-  title:  "2nd Shift"
-}];
-// const localizer = momentLocalizer(moment);  
-const employees = ["Emp1", "Emp2"];
+  // const [fetchNewData, setFetchNewData] = useState(true)
+  const [events, setEvents] = useState([])
+  const [users, setUsers] = useState([])
 
-
-class CreateShift extends React.Component {
-    constructor(...args) {
-      super(...args)
-  
-      this.state = { events }
-    }
-  
-    handleSelect = ({ start, end }) => {
+    // when creating a shift...
+    const handleSelect = ({ start, end }) => {
       const title = window.prompt('Shift Name')
-      if (title)
-        this.setState({
-          events: [
-            ...this.state.events,
-            {
-              start,
-              end,
-              title,
-            },
-          ],
+      if (title) {
+        const newTimeOffEvent = {
+          start:          moment(start).toDate(),
+          end:            moment(end).toDate(),
+          title,
+          allDay:         false,
+          isTimeOff:      false,
+          status:         '',
+          description:    '',
+          userObjectId:   ''// making it blue...
+        }
+        
+        newTimeOffEvent.allDay = newTimeOffEvent.start.getHours() === 0 && newTimeOffEvent.end.getHours() === 0
+
+
+        Axios.post('/api/events/create', newTimeOffEvent).then((axiosResponse) => {
+          newTimeOffEvent._id = axiosResponse.data.newEvent._id
+          setEvents([...events,newTimeOffEvent])
+        }).catch((apiError) => {
+            console.dir(apiError)
         })
+
+      }
     }
 
-    onSelectEvent = (eventPassed) => {
-      console.dir(eventPassed)
-      alert(eventPassed.title)
+    const onSelectEvent = (eventPassed) => {
+      // console.dir(eventPassed)
+    }
+    const localizer = momentLocalizer(moment);
+
+    useEffect(() => {
+      Axios.get('/api/events/createShiftRead').then((apiResponse) => {
+          const _unassigedEvents = apiResponse.data.events.map(o => {
+            return {
+              ...o,
+              start:  moment(o.start).toDate(),
+              end:    moment(o.end).toDate()
+            }
+          })
+
+          setEvents(_unassigedEvents)
+          setUsers(apiResponse.data.users)
+  
+        }).catch((apiError) => {
+          console.dir(apiError)
+        })
+
+    }, [])
+
+
+    const eventPropGetter = (eventDetails) => {
+      return EventService.getEventStyle(eventDetails)
     }
 
-    
 
+    return <ShiftContext.Provider value={{events, users, setEvents}}>
+      <div className="Calendar" id="create_shifts">
+          <Calendar
+            selectable
+            localizer={localizer}
+            defaultDate={new Date()}
+            events={events}
+            onSelectEvent={onSelectEvent}
+            onSelectSlot={handleSelect}
+            defaultView="week"
+            eventPropGetter={eventPropGetter}
+          />
+      </div>
 
-    render() {
-        const localizer = momentLocalizer(moment);
-        return (
-          <>
-            <div className="Calendar" id="create_shifts">
-                <Calendar
-                selectable
-                localizer={localizer}
-                defaultDate={new Date()}
-                events={this.state.events}
-                onSelectEvent={this.onSelectEvent}
-                onSelectSlot={this.handleSelect}
-                defaultView="week"
-                />
-            </div>
-            <div className="AssignShifts" id="right_sidebar">
-              <h3>Assign Shifts</h3>
-              <AssignShifts events={this.state.events} employees={employees}/>
-            </div>
-            </>       
-        );
-    }
+      <AssignShifts />
+      
+    </ShiftContext.Provider>
 }
 
 export default CreateShift

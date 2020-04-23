@@ -4,6 +4,7 @@ import EmployeeInfo from './../components/Employee-Info'
 import ScheduleDetail from './../components/Schedule-Details'
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"
+import EventService from './../services/EventService'
 
 const localizer = momentLocalizer(moment)
 
@@ -11,13 +12,15 @@ export default (props) => {
     const [events, setEvents] = useState([])
     const { userData } = props
 
+    /*
     let avatarUrl = ''
     if(userData && userData.avatar) {
         avatarUrl = userData.avatar
     };
+    */
 
     useEffect(() => {
-
+        debugger
         Axios.get('/api/events/getAllEvents').then((AxiosResponse) => {
             if(AxiosResponse && AxiosResponse.data && Array.isArray(AxiosResponse.data.events)) {
                 const allEvents = AxiosResponse.data.events.map(i => {
@@ -39,15 +42,8 @@ export default (props) => {
     }
 
     // styling events conditionally...
-    const eventPropGetter = (event, start, end, isSelected) => {
-        let style = {}
-        if(event && event.isTimeOff) {
-            style = {
-                backgroundColor: 'crimson',
-                color: 'white',
-            }
-        }
-        return {style}
+    const eventPropGetter = eventDetails => {
+        return EventService.getEventStyle(eventDetails)
     }
 
     let shiftCount = events.length;

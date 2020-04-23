@@ -37,12 +37,12 @@ const ScheduleSchema = new mongoose.Schema({
     // description like Clean the fryer
     description: {
         type: String,
-        required: false
+        required: false// some events dont have descriptions
     },
     // _userId
     userObjectId: {
         type: String,
-        required: true
+        required: false// because a shift can be unassigned...
     },
     isTimeOff: {
         type: Boolean,

@@ -43,7 +43,7 @@ export default (props) => {
                     <div className="flexbox-item"></div>
 
                     <div>
-                        <img alt="user icon logo" class="imageLocation" src={imgSrc}/>
+                        <img alt="user icon logo" className="imageLocation" src={imgSrc}/>
                     </div>
 
                     {/* should fire function instead... */}

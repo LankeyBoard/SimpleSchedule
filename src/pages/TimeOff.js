@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import { AppContext } from './../App';
 import moment from "moment";
 import Axios from 'axios';
+import EventService from './../services/EventService'
 
 export default () => {
 
@@ -35,14 +36,14 @@ export default () => {
         end: moment(end).toDate(),
         title,
         userObjectId: userData._id,
-        allDay: false
+        allDay: false,
+        isTimeOff: true// makes it RED
       }
       
       newTimeOffEvent.allDay = newTimeOffEvent.start.getHours() === newTimeOffEvent.end.getHours()
       const newEvents = [...events,newTimeOffEvent]
       setEvents(newEvents)
       Axios.post('/api/events/timeOffRequest', newTimeOffEvent).then((axiosResponse) => {
-          debugger
           console.dir(axiosResponse)
       }).catch((apiError) => {
           console.dir(apiError)
@@ -52,15 +53,9 @@ export default () => {
 
 
   // no logic for this as they are all timeOff
-  const eventPropGetter = () => {
-    return {
-        style: {
-            backgroundColor: 'crimson',
-            color: 'white',
-        }
-    }
+  const eventPropGetter = (eventDetails) => {
+    return EventService.getEventStyle(eventDetails)
   }
-
   const localizer = momentLocalizer(moment);
   // defaultView="month"
   return <div className="Calendar" id="time_off">
