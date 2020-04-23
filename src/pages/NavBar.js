@@ -21,7 +21,7 @@ export default (props) => {
 
         NavigationElements.push(<li key="home"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/">View Schedule</NavLink></li>)
 
-        if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
+        if((Settings.isLoggedInDefault && Settings.useAdminAccount)) {
             NavigationElements.push(<li key="information"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/info">Availability</NavLink></li>)
         }
         if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
@@ -39,6 +39,7 @@ export default (props) => {
     return <nav id="navigation_container">
                 <ul className="flexbox-wrapper nav">
                     {isLoggedIn || Settings.isLoggedInDefault ? getNavItems() : null}
+                    
                     {/* SPACER */}
                     <div className="flexbox-item"></div>
 
