@@ -14,7 +14,8 @@ interface Ievent
 const mongoose = require("mongoose")
 
 
-
+// TimeOff is an event
+// Shift is an event
 const ScheduleSchema = new mongoose.Schema({
     start: {
         type: Date,

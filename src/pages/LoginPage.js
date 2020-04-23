@@ -62,7 +62,7 @@ const Login = (props) => {
                                     <label className="flexbox-item" htmlFor="pw">Password</label>
                                     <input 
                                         className="flexbox-item"
-                                        type="text" 
+                                        type="password" 
                                         id="pw" 
                                         placeholder="password"
                                         value={password}

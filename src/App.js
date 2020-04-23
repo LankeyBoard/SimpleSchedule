@@ -13,6 +13,7 @@ import NavBar from './pages/NavBar'
 import CreateShift from './pages/CreateShift'
 import NotFoundPage from './pages/NotFoundPage'
 import Login from './pages/LoginPage'
+import ViewRequests from './pages/ViewRequests'
 import ProtectedRoute from "./pages/ProtectedRoute"
 import TokenService from './services/tokenService'
 import { Settings } from './services/Settings'
@@ -138,9 +139,14 @@ export default () => {
             path="/timeOff"
             render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
           />
+
           <Route
             path="/CreateShifts"
             render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><CreateShift /></ProtectedRoute>}
+          />
+          <Route
+            path="/ViewRequests"
+            render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><ViewRequests /></ProtectedRoute>}
           />
           <Route component={NotFoundPage} />
 

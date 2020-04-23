@@ -5,7 +5,7 @@ import AssignShifts from '../components/AssignShifts';
 import moment from "moment";
 // import emplyeeDropdown from '../components/employeeDropdown';
 
-const events = [    {
+const events = [{
   id: '1234567890',
   start:  moment().subtract(2, "hours").toDate(),
   end:    moment().toDate(),
@@ -45,12 +45,8 @@ class CreateShift extends React.Component {
     }
 
     onSelectEvent = (eventPassed) => {
-
-      debugger
       console.dir(eventPassed)
       alert(eventPassed.title)
-
-      
     }
 
     
@@ -73,9 +69,8 @@ class CreateShift extends React.Component {
             </div>
             <div className="AssignShifts" id="right_sidebar">
               <h3>Assign Shifts</h3>
-              <AssignShifts events = {this.state.events} employees={employees}/>
+              <AssignShifts events={this.state.events} employees={employees}/>
             </div>
-
             </>       
         );
     }

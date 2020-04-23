@@ -21,11 +21,14 @@ export default (props) => {
 
         NavigationElements.push(<li key="home"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/">View Schedule</NavLink></li>)
 
-        if(isManager || Settings.isLoggedInDefault) {
+        if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
             NavigationElements.push(<li key="information"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/info">Availability</NavLink></li>)
         }
-        if(isManager || Settings.isLoggedInDefault) {
+        if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
             NavigationElements.push(<li key="createShifts"><NavLink exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/createShifts">Make a Schedule</NavLink></li>)
+        }
+        if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
+            NavigationElements.push(<li key="viewRequests"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/viewRequests">View Time Off Requests</NavLink></li>)
         }
 
         NavigationElements.push(<li key="timeOff"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/timeOff">Request Time Off</NavLink></li>)
