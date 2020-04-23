@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import React, { useState, useContext, useEffect } from 'react';
 import DateComponent from '../components/DateComponent'
 import DatePicker from 'react-datepicker';
 import Axios from 'axios';
