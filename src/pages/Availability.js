@@ -150,7 +150,7 @@ export const Availability = () => {
             
             if(endHour < startHour)
             {
-                const alert = window.alert('Invalid Time Interval For an Entry');
+                window.alert("Invalid Time Interval For an Entry");
             }
 
             availabilityCopy[index] = {
