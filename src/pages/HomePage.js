@@ -8,6 +8,18 @@ import EventService from './../services/EventService'
 
 const localizer = momentLocalizer(moment)
 
+function GetEvents(events, userid){
+    let UsersEvents = [];
+    for(let i =0; i<events.length; i++){
+        console.log(events[i]);
+        if(events[i].userObjectId.localeCompare(userid) === 0){
+            console.log("match")
+            UsersEvents.push(events[i])
+        }
+    }
+    return UsersEvents;
+}
+
 export default (props) => {
     const [events, setEvents] = useState([])
     const { userData } = props
@@ -45,8 +57,8 @@ export default (props) => {
     const eventPropGetter = eventDetails => {
         return EventService.getEventStyle(eventDetails)
     }
-
-    let shiftCount = events.length;
+    let userEvents = GetEvents(events, userData._id);
+    let shiftCount = userEvents.length;
 
 
     return (
@@ -58,13 +70,13 @@ export default (props) => {
                         localizer={localizer}
                         defaultDate={new Date()}
                         defaultView="month"
-                        events={events}
+                        events={userEvents}
                         onSelectEvent={onSelectEvent}
                         eventPropGetter={eventPropGetter}
                     />
                 </div>
             </div>
-            <ScheduleDetail shifts={events} />
+            <ScheduleDetail shifts={userEvents} />
         </div>
     )
 }
