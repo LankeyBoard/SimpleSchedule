@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 const AssignShifts = () => {
 
-    const { events, users, setEvents } = useContext(ShiftContext)
+    const { events, users, setEvents, availabilities } = useContext(ShiftContext)
 
     const nameDropdown = users.map(i => {return {name: `${i.firstName} ${i.lastName}`, id: i._id}}).sort((a, b) => a < b ? -1 : 1)
 

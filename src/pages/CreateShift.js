@@ -76,7 +76,7 @@ const CreateShift = () =>
 
     console.log(availabilities)
 
-    return <ShiftContext.Provider value={{events, users, setEvents}}>
+    return <ShiftContext.Provider value={{events, users, setEvents, availabilities}}>
       <div className="Calendar" id="create_shifts">
           <Calendar
             selectable
