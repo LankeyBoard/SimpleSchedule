@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import Axios from 'axios'
 //import e from "express";
 // import EmployeeInfo from "../components/Employee-Info";
 
@@ -34,7 +35,7 @@ function EmployeeInfo(props){
     let event = props.event;
     for(let i=0; i<empolyees.length; i++){
         let comp = empolyees[i].userid.localeCompare(event.userObjectId)
-        if(comp == 0){
+        if(comp === 0){
             return(<p>{empolyees[i].firstName} {empolyees[i].lastName}</p>);
         }
     }
