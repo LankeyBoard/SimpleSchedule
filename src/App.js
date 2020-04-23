@@ -94,10 +94,12 @@ export default () => {
 
   let role = ''
   let isManager = false
+
   if(_roleDefined) {
       role = userData.role
       isManager = role === 'manager'
   }
+  
 
 
   console.log(token)
