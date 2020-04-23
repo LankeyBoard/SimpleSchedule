@@ -12,7 +12,7 @@ function GetEvents(events, userid){
     let UsersEvents = [];
     for(let i =0; i<events.length; i++){
         console.log(events[i]);
-        if(events[i].userObjectId.localeCompare(userid) === 0){
+        if(events[i].userObjectId.localeCompare(userid) === 0 && !events[i].isTimeOff){
             console.log("match")
             UsersEvents.push(events[i])
         }
