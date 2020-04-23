@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../css/employeInfo.css'
+// import { AppContext } from './../App';
 
 export default ({userData, shiftCount}) => {
 

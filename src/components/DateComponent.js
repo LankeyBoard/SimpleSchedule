@@ -42,6 +42,7 @@ export default (props) => {
         const _objectIndex = _availabilityCopy.findIndex(o => o.day === day)
         const _ObjectCopy = availability[_objectIndex]
         _ObjectCopy.selection = availabilitySelection.dateRange
+        debugger
         if(isFrom) {
             _ObjectCopy.start = value
         } else {
@@ -62,18 +63,20 @@ export default (props) => {
     return <p className="flexbox-wrapper vertical">
     <h3 className="italic uppercase text-alignedCenter spacedText redLine marginTop-15 pad-bottom-15">{day}</h3>
     <div className="flexbox-centeredEvenly flexbox-wrapper DateComponentSpacing">
-        
+
+        {/* AllDay */}
         <label className={getLabelClass(availabilitySelection.allDay)} onClick={() => selectedRadioInput(day, 'allDay')}>
             <input tabIndex={index} checked={selection===availabilitySelection.allDay} className="pointerCursor" type="radio" id={day + "_A"} name={day} value="male"/>
-            <label className="pointerCursor" for={day + "_A"}>All Day</label>
+            <label className="pointerCursor" htmlFor={day + "_A"}>All Day</label>
         </label>
 
+        {/* DATERANGE */}
         <label  className={getLabelClass(availabilitySelection.dateRange)}>
             <div className="flexbox-wrapper flexbox-item">
                 <span className="flexbox-centered flexbox-wrapper" style={{paddingRight: "20px", margin: '0'}}>
                     <input tabIndex={index} onClick={radioRangeSelected} checked={selection===availabilitySelection.dateRange} className="pointerCursor" type="radio" id={day + "_B"} name={day} value="male"/>
                 </span>
-                <label className="pointerCursor flexbox-item" for={day + "_B"}>
+                <label className="pointerCursor flexbox-item" htmlFor={day + "_B"}>
                     <p className="flexbox-wrapper">
                         <span className="flexbox-item">From: </span> 
                         <input className="flexbox-item" type="time" name="appt" onChange={(e) => changeValue(e, true)} value={start} />
@@ -87,9 +90,10 @@ export default (props) => {
             </div>
         </label>
 
+        {/* Not Available */}
         <label className={getLabelClass(availabilitySelection.unavailable)} onClick={() => selectedRadioInput(day, 'unavailable')}>
             <input tabIndex={index} checked={selection===availabilitySelection.unavailable} className="pointerCursor" type="radio" id={day + "_C"} name={day} value="unavailable"/>
-            <label className="pointerCursor" for={day + "_C"}>Not Available</label>
+            <label className="pointerCursor" htmlFor={day + "_C"}>Not Available</label>
         </label>
 
     </div>

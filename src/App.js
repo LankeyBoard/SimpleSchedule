@@ -15,7 +15,7 @@ import NotFoundPage from './pages/NotFoundPage'
 import Login from './pages/LoginPage'
 import ViewRequests from './pages/ViewRequests'
 import ProtectedRoute from "./pages/ProtectedRoute"
-// import TokenService from './services/tokenService'
+import TokenService from './services/tokenService'
 import { Settings } from './services/Settings'
 
 export const AppContext = React.createContext()
@@ -29,12 +29,12 @@ export default () => {
 
   useEffect(() => {
     if(Settings.isLoggedInDefault) {
-      ApiService.LogIn('unclefifi', "password").then((axiosResponse) => {
-        const response = axiosResponse.data
-        receiveNewJwt(response.token)
-        setUserData(response.user)
-      }).catch((axiosError)=> {
-        console.dir(axiosError)
+      ApiService.LogIn(Settings.defaultUser.userid, Settings.defaultUser.password).then((axiosResponse) => {
+        if(axiosResponse.status === 200) {
+          const response = axiosResponse.data
+          receiveNewJwt(response.token)
+          setUserData(response.user)
+        }
       })
     }
   }, [])
@@ -84,12 +84,8 @@ export default () => {
   }
 
   const receiveNewJwt = jwt => {
-    console.log(jwt)
     setJwt(jwt)
-
-    debugger// fix this as above...
-    // ...needs to be better...
-    // setUserData(TokenService.retrieveTokenData(jwt))
+    setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
 
@@ -140,9 +136,10 @@ export default () => {
 
           <Route 
             exact
-            path="/timeOff" 
-            render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
+            path="/timeOff"
+            render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><TimeOff userData={userData}/></ProtectedRoute>}
           />
+
           <Route
             path="/CreateShifts"
             render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><CreateShift /></ProtectedRoute>}

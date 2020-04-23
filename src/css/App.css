@@ -67,7 +67,7 @@ li a {
   height: 100%;
 }
 
-
+.activeNavigation,
 li a:hover {
   background-color: #5781a3;
 }
@@ -309,9 +309,8 @@ button.delete:hover{
   border: 1px solid lightgray;
 }
 
-.activeNavigation {
-  background: darkred;
-}
+
+
 
 .cardBottom {
   width: 200px;
@@ -322,4 +321,10 @@ button.delete:hover{
 
 #page-body > div {
   overflow: auto;
+}
+
+.imageLocation {
+    display: block;
+    height: 100%;
+    margin-left: auto;
 }

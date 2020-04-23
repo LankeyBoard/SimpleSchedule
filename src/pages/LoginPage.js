@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import logo from './../images/Slogo.png'
 import { ApiService } from './../services/ApiService'
-// import Axios from 'axios'
+import { Settings } from './../services/Settings'
 
 const Login = (props) => {
     
     const { newJwtNotify } = props
-    const [userid, setUserId] = useState('')
-    const [password, setPassword] = useState('')
+
+    const [userid, setUserId] = useState(Settings.defaultUser.userid)
+    const [password, setPassword] = useState(Settings.defaultUser.password)
+
     const [errors, setErrors] = useState([])
     const [isRedirectingHome, setToHome] = useState(false)
 
@@ -37,7 +39,7 @@ const Login = (props) => {
     const _errorsBuild = () => errors.map((e,i) => <div key={e}>{i+1}.) {e}</div>)
 
     const buildForm = () => <div className="flexbox-wrapper flexbox-item vertical">
-                        
+
                         <div className="flexbox-item">
                             <img id="loginLogo" src={logo} alt="Logo" />
                         </div>
@@ -46,7 +48,7 @@ const Login = (props) => {
                             <div className="flexbox-wrapper login vertical">
                                 <h3>Login</h3>
                                 <span className="flexbox-wrapper">
-                                    <label className="flexbox-item" for="userid">Employee ID</label>
+                                    <label className="flexbox-item" htmlFor="userid">Employee ID</label>
                                     <input 
                                         className="flexbox-item"
                                         type="text" 
@@ -57,7 +59,7 @@ const Login = (props) => {
                                     />
                                 </span>
                                 <span className="flexbox-wrapper">
-                                    <label className="flexbox-item" for="pw">Password</label>
+                                    <label className="flexbox-item" htmlFor="pw">Password</label>
                                     <input 
                                         className="flexbox-item"
                                         type="password" 
@@ -70,8 +72,6 @@ const Login = (props) => {
                                 <button onClick={logInApiRequest} id="login">Login</button>
                             </div>
                         </div>
-
-
                         <div className="flexbox-centeredEvenly flexbox-item flexbox-wrapper vertical">
                             {_errorsBuild()}
                         </div>

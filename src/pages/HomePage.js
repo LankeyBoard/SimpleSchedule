@@ -11,10 +11,10 @@ export default (props) => {
     const [events, setEvents] = useState([])
     const { userData } = props
 
-    // let avatarUrl = ''
-    // if(userData.avatar) {
-    //     avatarUrl = userData.avatar
-    // };
+    let avatarUrl = ''
+    if(userData && userData.avatar) {
+        avatarUrl = userData.avatar
+    };
 
     useEffect(() => {
 

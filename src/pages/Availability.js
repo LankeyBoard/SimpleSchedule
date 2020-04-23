@@ -4,13 +4,8 @@ import DatePicker from 'react-datepicker';
 import Axios from 'axios';
 import { AppContext } from './../App'
 import { daysOfWeek, availabilitySelection } from './../enums'
-
-
-
 export const EmployeeContext = React.createContext()
 const today = new Date()
-
-
 
 //AppContext
 export const Availability = () => {

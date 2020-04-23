@@ -57,10 +57,12 @@ availabilityController.post('/create', [
 availabilityController.post('/read', [
     check('userId', 'userId is required').exists(),
 ], async (req, res) => {
+    
     const errors = validationResult(req)
     if(!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() })//bad request
     }
+
     // extracting these properties from the body
     const { userId } = req.body
 
