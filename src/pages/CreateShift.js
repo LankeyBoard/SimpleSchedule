@@ -74,6 +74,7 @@ const CreateShift = () =>
       return EventService.getEventStyle(eventDetails)
     }
 
+    console.log(availabilities)
 
     return <ShiftContext.Provider value={{events, users, setEvents}}>
       <div className="Calendar" id="create_shifts">
