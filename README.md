@@ -15,7 +15,7 @@ functionality, creativity and usability.
 ## User Stories - Functions 
 
 - [ ] User can view calendar from a manager || employee view
-- [ ] Employee can set their availability to avoid being scheduled then
+- [x] Employee can set their availability to avoid being scheduled then
 - [x] Implement the Big-Calendar to have different calendar views
 - [x] User is allowed to login-logout to the application 
 
@@ -23,11 +23,11 @@ functionality, creativity and usability.
 
 ## Running both react and express...
 
-<br>-Navigate to project folder > ./project/employee
-<br>-Update npm `npm install -g npm@latest`
-<br>-First use the command `npm run build` at least once 
+<br>-Navigate to project folder > ./projectFolder
+<br>-Install npm dependencies `npm install`
+<br>-First use the command `npm run build` (@ least once)
 <br>-Proceed by running `npm run proxy`
-<br>-Navigate to browser and open http://localhost:3000 
+<br>-Navigate to browser and open `http://localhost:3000` 
 
 ## <a href="https://github.com/LankeyBoard/SimpleSchedule/projects/1">Team Transparency: Kanban Board</a>
 <img src="https://d3tvpxjako9ywy.cloudfront.net/blog/content/uploads/2019/07/Unlock-All-Your-Team-Kan-Do-With-a-Kanban-Template-2-1491x914.jpg?av=5f90c29a1379c318be242ac001362e9d"/>
