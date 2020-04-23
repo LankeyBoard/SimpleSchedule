@@ -20,6 +20,9 @@ export default (props) => {
         if(isManager || Settings.isLoggedInDefault) {
             NavigationElements.push(<li key="createShifts"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/createShifts">Make a Schedule</NavLink></li>)
         }
+        if(isManager || Settings.isLoggedInDefault) {
+            NavigationElements.push(<li key="viewRequests"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/viewRequests">View Time Off Requests</NavLink></li>)
+        }
 
         NavigationElements.push(<li key="timeOff"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/TimeOff">Request Time Off</NavLink></li>)
         return NavigationElements
