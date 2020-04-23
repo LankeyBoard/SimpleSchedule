@@ -142,6 +142,11 @@ export const Availability = () => {
             let [endHour, endMinute] = dateRangeItem.end.split(':')
             endHour         = parseInt(endHour)
             endMinute       = parseInt(endMinute)
+            
+            if(endHour < startHour)
+            {
+                window.alert("Invalid Time Interval For an Entry");
+            }
 
             availabilityCopy[index] = {
                 ...dateRangeItem,
