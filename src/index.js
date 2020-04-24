@@ -7,6 +7,7 @@ import './css/index.css';
 import './css/App.css';
 import './css/flex.css';
 import "./css/404.css";
+import './css/employeInfo.css'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 

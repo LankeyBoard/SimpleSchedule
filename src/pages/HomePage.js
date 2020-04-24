@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Axios from 'axios'
 import EmployeeInfo from './../components/Employee-Info'
 import ScheduleDetail from './../components/Schedule-Details'
+import { AppContext } from './../App'
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"
 import EventService from './../services/EventService'
 
 const localizer = momentLocalizer(moment)
+export const HomePageContext = React.createContext()
 
-function GetEvents(events, userid){
-    let UsersEvents = [];
-    for(let i =0; i<events.length; i++){
-        console.log(events[i]);
-        if(events[i].userObjectId.localeCompare(userid) === 0 && !events[i].isTimeOff){
-            console.log("match")
-            UsersEvents.push(events[i])
-        }
-    }
-    return UsersEvents;
-}
 
-export default (props) => {
+export default () => {
+
+    const { userData } = useContext(AppContext)
     const [events, setEvents] = useState([])
-    const { userData } = props
+    const [showAllEvents, setShowAllEvents] = useState(false)
 
-    /*
-    let avatarUrl = ''
-    if(userData && userData.avatar) {
-        avatarUrl = userData.avatar
-    };
-    */
 
     useEffect(() => {
-        debugger
         Axios.get('/api/events/getAllEvents').then((AxiosResponse) => {
             if(AxiosResponse && AxiosResponse.data && Array.isArray(AxiosResponse.data.events)) {
                 const allEvents = AxiosResponse.data.events.map(i => {
@@ -49,6 +35,17 @@ export default (props) => {
         })
     }, [])
 
+
+    const GetEvents = (events, userid) => {
+        let UsersEvents = [];
+        for(let i =0; i<events.length; i++){
+            if(events[i].userObjectId.localeCompare(userid) === 0 && !events[i].isTimeOff){
+                UsersEvents.push(events[i])
+            }
+        }
+        return UsersEvents;
+    }
+
     const onSelectEvent = (eventDetails, javascriptEvent) => {
         console.log(eventDetails)
     }
@@ -57,26 +54,34 @@ export default (props) => {
     const eventPropGetter = eventDetails => {
         return EventService.getEventStyle(eventDetails)
     }
+
+    let ttlShiftCount = events.length
     let userEvents = GetEvents(events, userData._id);
-    let shiftCount = userEvents.length;
+    let myShiftCount = userEvents.length
+    let _userEvents = showAllEvents ? events : userEvents
 
+    const counts = {
+        myShiftCount, 
+        ttlShiftCount
+    }
 
-    return (
-        <div className="flexbox-wrapper flexbox-item">
-            <EmployeeInfo userData={userData} shiftCount={shiftCount} />
-            <div id="focus" className="flexbox-item">
-                <div className="Calendar">
-                    <Calendar
-                        localizer={localizer}
-                        defaultDate={new Date()}
-                        defaultView="month"
-                        events={userEvents}
-                        onSelectEvent={onSelectEvent}
-                        eventPropGetter={eventPropGetter}
-                    />
+    return (<HomePageContext.Provider value={{showAllEvents, setShowAllEvents, counts}}>
+            <div className="flexbox-wrapper flexbox-item">
+                <EmployeeInfo />
+                <div id="focus" className="flexbox-item">
+                    <div className="Calendar">
+                        <Calendar
+                            localizer={localizer}
+                            defaultDate={new Date()}
+                            defaultView="month"
+                            events={_userEvents}
+                            onSelectEvent={onSelectEvent}
+                            eventPropGetter={eventPropGetter}
+                        />
+                    </div>
                 </div>
+                <ScheduleDetail shifts={_userEvents} />
             </div>
-            <ScheduleDetail shifts={userEvents} />
-        </div>
+        </HomePageContext.Provider>
     )
 }

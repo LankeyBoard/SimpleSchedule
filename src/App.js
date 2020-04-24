@@ -43,48 +43,11 @@ export default () => {
 
     if(loggingAction === 'logout') {
       changeLoginState(!isLoggedIn)
-      // setToken('')
     }
-
-    /*
-    // .... THIS IS REGISTRATION LOGIC ....
-    if(isLoggedIn===true) {
-      alert('remove token from memmory...')
-      changeLoginState(true)
-    }
-
-
-    const newIsLoggedInState = !isLoggedIn
-    changeLoginState(newIsLoggedInState)
-    if(newIsLoggedInState) {
-      // this means we are now logged in...
-      Axios.post('./api/users', {
-        "name": "unclefifi",
-        "email": "unclefifi@gmail.com",
-        "password": "papai"
-      }).then((axiosApiResponse) => {
-        const token = axiosApiResponse.data.token
-        setToken(token)
-        alert(token)
-      }).catch((axiosError) => {
-        if(axiosError
-          && axiosError.response
-          && axiosError.response.data
-          && Array.isArray(axiosError.response.data.errors)
-          && axiosError.response.data.errors.length > 0) {
-            const { errors } = axiosError.response.data
-            errors.forEach(i => {
-              alert(i.msg)
-            })
-          }
-      })
-    }
-    */
   }
 
   const receiveNewJwt = jwt => {
-    // setJwt(jwt)
-    setUserData(TokenService.retrieveTokenData(jwt))
+    // setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
 
@@ -100,7 +63,6 @@ export default () => {
 
   return <AppContext.Provider value={{userData, setUserData}}>
     <Router>
-
       <NavBar 
         isLoggedIn={_isLoggedIn} 
         userData={userData} 
@@ -114,7 +76,7 @@ export default () => {
           <Route 
             path="/" 
             exact
-            render={(props) => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><HomePage userData={userData}/></ProtectedRoute>}
+            render={() => <ProtectedRoute adminOnly={false} userData={userData} isLoggedIn={_isLoggedIn}><HomePage/></ProtectedRoute>}
           />
 
           <Route 

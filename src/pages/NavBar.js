@@ -6,7 +6,7 @@ import { AppContext } from './../App'
 export default (props) => {
 
     const { userData } = useContext(AppContext)
-    let imgSrc = "//www.gravatar.com/avatar/069890ab020a74543fda220305f4f653?s=400&r=pg&d=mm"
+    let imgSrc = Settings.defaultImageUrl
     if(userData && userData.avatar) {
         imgSrc = userData.avatar
     }

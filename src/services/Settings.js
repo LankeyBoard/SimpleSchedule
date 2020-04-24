@@ -8,7 +8,7 @@ class UISettings {
     // make this true to default to adminsAccount
     // use this along with isLoggedInDefault set to true
     get useAdminAccount() {
-        return true
+        return false
     }
 
     get defaultUser() {
@@ -16,6 +16,10 @@ class UISettings {
             userid:     this.isLoggedInDefault ? (this.useAdminAccount ? 'LankeyBoard' : 'jondoe123') : '',
             password:   this.isLoggedInDefault ? (this.useAdminAccount ? 'password'  : 'password')  : ''
         }
+    }
+
+    get defaultImageUrl() {
+        return "//www.gravatar.com/avatar/069890ab020a74543fda220305f4f653?s=400&r=pg&d=mm"
     }
 }
 

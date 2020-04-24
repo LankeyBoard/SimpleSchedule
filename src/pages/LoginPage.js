@@ -3,12 +3,14 @@ import { Redirect } from 'react-router-dom'
 import logo from './../images/Slogo.png'
 import { ApiService } from './../services/ApiService'
 import { Settings } from './../services/Settings'
-import { AppContext } from './../App';
+import { AppContext } from './../App'
 
-const Login = (props) => {
+import eyeClosed from "./../images/eyeClosed.png"
+import eyeOpen from "./../images/eyeOpen.png"
+
+export default () => {
     
-    const { userData, setUserData } = useContext(AppContext)
-    // const { newJwtNotify } = props
+    const { setUserData } = useContext(AppContext)
 
     const [isPassword, setIsPassword] = useState(true)
     const [userid, setUserId] = useState(Settings.defaultUser.userid)
@@ -30,13 +32,9 @@ const Login = (props) => {
     }
 
     const logInApiRequest = async () => {
-        debugger
         const jwt = await ApiService.LogIn(userid, password)
         if(jwt.status === 200 && jwt.data) {
-            // newJwtNotify(jwt.data.token)
             setUserData(jwt.data.user)
-
-            // sends the user to the full calendar view...
             setToHome(true)
         } else if(jwt && jwt.data && jwt.data.errors) {
             setErrors(jwt.data.errors.map(x => x.msg))
@@ -78,7 +76,14 @@ const Login = (props) => {
                                     />
                                 </span>
                                 <label htmlFor="viewPassword" className="pointerCursor flexbox-wrapper">
-                                    <span className="flexbox-item">{isPassword ? "View" : "Hide"} Password</span>
+                                    
+                                    <span className="flexbox-wrapper flexbox-item">
+                                        <span className="flexbox-item">
+                                            <img style={{marginRight: '25px'}} height="20" alt="loginLogo" src={isPassword ? eyeOpen : eyeClosed}/>
+                                            {isPassword ? "View" : "Hide"}
+                                        </span>
+                                    </span>
+                                    
                                     <input onClick={() => setIsPassword(!isPassword)} id="viewPassword" className="flexbox-item" type="checkbox"/>
                                 </label>
                                 <button onClick={logInApiRequest} id="login">Login</button>
@@ -92,5 +97,3 @@ const Login = (props) => {
     return isRedirectingHome ? <Redirect to="/"/> : buildForm()
 
 }
-
-export default Login;
