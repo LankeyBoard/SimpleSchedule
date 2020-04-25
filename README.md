@@ -14,7 +14,7 @@ functionality, creativity and usability.
 
 ## User Stories - Functions 
 
-- [ ] User can view calendar from a manager || employee view
+- [x] User can view calendar from a manager || employee view
 - [x] Employee can set their availability to avoid being scheduled then
 - [x] Implement the Big-Calendar to have different calendar views
 - [x] User is allowed to login-logout to the application 
@@ -23,7 +23,6 @@ functionality, creativity and usability.
 
 ## Running both react and express...
 
-<br>-Navigate to project folder > ./projectFolder
 <br>-Install npm dependencies `npm install`
 <br>-First use the command `npm run build` (@ least once)
 <br>-Proceed by running `npm run proxy`
