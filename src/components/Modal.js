@@ -52,7 +52,6 @@ export default (props) => {
         setTimeout(() => {
             toggleModal()
         }, 500)
-
     }
 
 
