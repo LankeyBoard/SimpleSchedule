@@ -1,16 +1,27 @@
 
+const backgroundColorStyleLookup = {
+  pending: 'dimgrey',
+  accepted: 'aquamarine',
+  rejected: 'crimson'
+}
+
+const ColorStyleLookup = {
+  pending: 'white',
+  accepted: 'black',
+  rejected: 'white'
+}
+
 export default class EventService
 {
 
   static getEventStyle(eventRef) {
-        // default event, no style
         let style = {}
-
-        // time off events are red
         if(eventRef && eventRef.isTimeOff) {
-            return { style: {
-                backgroundColor: 'crimson',
-                color: 'white',
+          return {
+            style: {
+                backgroundColor: backgroundColorStyleLookup[eventRef.status],
+                color: ColorStyleLookup[eventRef.status],
+                fontWeight: 100
             }
           }
         }
@@ -36,5 +47,6 @@ export default class EventService
         }
 
         return {style}
+
     }
 }

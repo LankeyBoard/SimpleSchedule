@@ -187,7 +187,7 @@ eventController.get('/timeOffRequestRead', async (req, res) => {
 // @access      Public
 eventController.get('/viewTimeOffRequests', async (req, res) => {
     try {
-        let allTimeOffRequests = await (await Event.find({isTimeOff: true}))
+        let allTimeOffRequests = await (await Event.find({isTimeOff: true, status: 'pending'}))
         allTimeOffRequests = allTimeOffRequests.map(o => o.toObject())
         let allUsers = await UserUtil.getAllUsers()
         allUsers = allUsers.map(o => o.toObject())
