@@ -4,6 +4,16 @@ html, body, div#root {
   overflow: hidden;
 }
 
+#applicationContainer {
+  position: relative;
+  z-index: 1000;
+
+}
+
+#applicationContainer.open {
+  filter: blur(5px);
+}
+
 .pointerCursor:hover {
   cursor: pointer;
 }
@@ -40,6 +50,7 @@ ul.nav {
 
 #page-body {
   height: calc(100vh - 50px);
+  overflow: auto;
 }
 
 .text-alignedLeft{
@@ -368,4 +379,86 @@ ul#requestList li{
 
 .checkboxRightMargin {
   margin-right: 10px;
+}
+
+
+.manageUserCreateButton{
+  padding: 10px 40px;
+  margin: 20px;
+  border: 2px solid;
+  border-radius: 10px;
+  background: white;
+}
+
+.BG_OnHover:hover {
+  background: #303030;
+  color: white;
+}
+
+.tableWidth {
+  margin: 0 200px;
+}
+
+.tableHeadBorder {
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.pad-5 {
+  padding: 5px;
+}
+
+#userForm {
+  padding: 50px;
+  border: 1px solid;
+  border-radius: 10px;
+  background: aliceblue;
+}
+
+.animated { 
+  transition: all 0.5s ease-out;
+}
+
+#modal-background {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: #30303047;
+  z-index: 1;
+  display: none;
+}
+
+#modal-background.open {
+  display: flex;
+  z-index: 3000;
+}
+
+#modal-background > #modal-container {
+  transform: translateY(-100vh);
+}
+#modal-background.open > #modal-container.animating {
+  transform: translateY(0);
+}
+
+#modal-background.open > #modal-container {
+  width: 90%;
+  height: 80%;
+  border: 1px solid;
+  border-radius: 20px;
+  background: white;
+  cursor: auto;
+}
+
+
+
+.bottom-border {
+  border-bottom: 1px solid black;
+}
+
+.pad-20{
+  padding: 20px;
 }

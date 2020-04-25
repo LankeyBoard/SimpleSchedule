@@ -13,7 +13,7 @@ export const HomePageContext = React.createContext()
 
 export default () => {
 
-    const { userData } = useContext(AppContext)
+    const { userData, toggleModal } = useContext(AppContext)
     const [events, setEvents] = useState([])
     const [showAllEvents, setShowAllEvents] = useState(false)
 
@@ -46,8 +46,17 @@ export default () => {
         return UsersEvents;
     }
 
-    const onSelectEvent = (eventDetails, javascriptEvent) => {
-        console.log(eventDetails)
+    const onSelectEvent = (eventDetails) => {
+        const configuration = {
+            title: "Event Details", 
+            style: {
+                height: '300px',
+                width: '600px'
+            },
+            type: 'eventDetails',
+            properties: eventDetails
+        }
+        toggleModal(configuration)
     }
 
     // styling events conditionally...

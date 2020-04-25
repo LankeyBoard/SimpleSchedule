@@ -16,6 +16,14 @@
     justify-content: space-evenly;
 }
 
+.justifyContent-flexEnd{
+    justify-content: flex-end;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
+
 .flexbox-wrapper > .flexbox-item {
     flex: 1;
 }

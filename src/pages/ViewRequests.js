@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Axios from 'axios';
 import { Requests } from './Requests'
@@ -25,8 +25,6 @@ export default () => {
 
     return <ViewRequestContext.Provider value={{events, setEvents}}>
         <h2>Approve/Reject Time Off Requests</h2>
-            <ul>
-                <Requests events={events}/>
-            </ul>
-        </ViewRequestContext.Provider>
+        <Requests events={events}/>
+    </ViewRequestContext.Provider>
 }

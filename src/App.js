@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom'
 
+import Modal from './components/Modal'
 import HomePage from './pages/HomePage'
 import TimeOff from './pages/TimeOff'
 import { Availability } from './pages/Availability'
@@ -15,16 +16,19 @@ import NotFoundPage from './pages/NotFoundPage'
 import Login from './pages/LoginPage'
 import ViewRequests from './pages/ViewRequests'
 import ProtectedRoute from "./pages/ProtectedRoute"
-import TokenService from './services/tokenService'
+import { UserManager } from './pages/userManager'
 import { Settings } from './services/Settings'
+// import Toast from './components/Toast'
 
 export const AppContext = React.createContext()
 
 export default () => {
-  // const [jwt, setJwt] = useState('')
   const [isLoggedIn, changeLoginState] = useState(Settings.isLoggedInDefault)
-  // const [token, setToken] = useState("")
   const [userData, setUserData] = useState({})
+  const baseModalState = { isOpen: false, title: '', style: {} }
+  const [modalState, setModalOpenState] = useState(baseModalState)
+
+
 
   useEffect(() => {
     if(Settings.isLoggedInDefault) {
@@ -39,15 +43,7 @@ export default () => {
   }, [])
 
 
-  const toggle = (loggingAction) => {
-
-    if(loggingAction === 'logout') {
-      changeLoginState(!isLoggedIn)
-    }
-  }
-
   const receiveNewJwt = jwt => {
-    // setUserData(TokenService.retrieveTokenData(jwt))
     changeLoginState(true)
   }
 
@@ -61,15 +57,47 @@ export default () => {
       isManager = role === 'manager'
   }
 
-  return <AppContext.Provider value={{userData, setUserData}}>
+
+
+  /*
+  setting has
+    - title
+    - height
+    - width
+   */
+  const toggleModal = (setting) => {
+    let toggledState = !modalState.isOpen
+    const newModalState = {
+      ...baseModalState,
+      ...modalState,
+      ...setting,
+      isOpen:toggledState
+    }
+    setModalOpenState(newModalState)
+  }
+
+  const modalClassName = modalState.isOpen ? "open" : "closed"
+
+  return <AppContext.Provider value={
+    {
+      userData, isManager, _isLoggedIn, setUserData, changeLoginState, 
+      toggleModal, modalState
+    }}>
+
     <Router>
+
+      {modalState.isOpen ? <Modal toggleModal={toggleModal}/> : null}
+      
+
+
+      {/*<Toast/>*/}
+      <div id="applicationContainer" className={modalClassName}>
+
       <NavBar 
         isLoggedIn={_isLoggedIn} 
-        userData={userData} 
-        toggled={toggle}
+        userData={userData}
         isManager={isManager}
-      />
-
+      />      
       <div id="page-body" className="flexbox-wrapper vertical">
         <Switch>
 
@@ -105,10 +133,19 @@ export default () => {
             path="/ViewRequests"
             render={(props) => <ProtectedRoute adminOnly={true} userData={userData} isLoggedIn={_isLoggedIn}><ViewRequests /></ProtectedRoute>}
           />
+
+          <Route 
+            path="/ManageUsers"
+            component={UserManager}
+          />
+
           <Route component={NotFoundPage} />
 
         </Switch>
       </div>
+
+      </div>
+
     </Router>
 </AppContext.Provider>
 

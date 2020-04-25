@@ -5,14 +5,14 @@ import { AppContext } from './../App'
 
 export default (props) => {
 
-    const { userData } = useContext(AppContext)
+    const { userData, isManager, changeLoginState } = useContext(AppContext)
     let imgSrc = Settings.defaultImageUrl
     if(userData && userData.avatar) {
         imgSrc = userData.avatar
     }
 
     // userData && userData.role
-    const { isLoggedIn, toggled, isManager } = props
+    const { isLoggedIn } = props
 
     const logText = isLoggedIn ? "Log Out" : "Log In"
 
@@ -29,6 +29,9 @@ export default (props) => {
         }
         if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
             NavigationElements.push(<li key="viewRequests"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/viewRequests">View Time Off Requests</NavLink></li>)
+        }
+        if(isManager || (Settings.isLoggedInDefault && Settings.useAdminAccount)) {
+            NavigationElements.push(<li key="ManageUsers"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/ManageUsers">Manage Users</NavLink></li>)
         }
 
         NavigationElements.push(<li key="timeOff"><NavLink  exact activeClassName="activeNavigation" className="flexbox-wrapper flexbox-item flexbox-centered" to="/timeOff">Request Time Off</NavLink></li>)
@@ -48,7 +51,7 @@ export default (props) => {
                     </div>
 
                     {/* should fire function instead... */}
-                    <li onClick={() => toggled(isLoggedIn ? 'logout' : 'login')} className="logout">
+                    <li onClick={() => changeLoginState(!isLoggedIn)} className="logout">
                         <NavLink className="flexbox-wrapper flexbox-item flexbox-centered" to="/login">{logText}</NavLink>
                     </li>
                 </ul>

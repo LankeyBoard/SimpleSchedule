@@ -8,7 +8,7 @@ class UISettings {
     // make this true to default to adminsAccount
     // use this along with isLoggedInDefault set to true
     get useAdminAccount() {
-        return false
+        return true
     }
 
     get defaultUser() {

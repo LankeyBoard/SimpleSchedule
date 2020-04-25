@@ -10,8 +10,8 @@ const { check, validationResult } = require("express-validator/check")
 // @desc        Register User
 // @access      Public
 userController.post('/', [
-    check('firstName', 'name is required').not().isEmpty(),
-    check('lastName', 'name is required').not().isEmpty(),
+    check('firstName', 'firstName is required').not().isEmpty(),
+    check('lastName', 'lastName is required').not().isEmpty(),
     check('userid', "userid is required").exists(),
     check('email', 'please include a valid email').isEmail(),
     check('password', 'please enter a password with 4 or more characters').isLength({min: 4}),
@@ -19,6 +19,9 @@ userController.post('/', [
 ], async (req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()) {
+
+
+
         return res.status(400).json({ errors: errors.array() })//bad request
     }
 
@@ -28,8 +31,9 @@ userController.post('/', [
     try {
 
         let user = await UserUtil.getUserByEmail(email)
+        let _user = await UserUtil.getUserByUserId(userid)
 
-        if(user) {
+        if(user || _user) {
             res.status(400).json({ errors: [ {msg: "User already exists."} ] })
         }
 
@@ -46,7 +50,6 @@ userController.post('/', [
             role,
             password// is not yet encrypted
         })
-
 
         // encrypts the password
         await UserUtil.passwordGen(user, password)
@@ -108,7 +111,6 @@ userController.post('/authenticate', [
 // @desc        authenticate user and gets a token
 // @access      Public
 userController.get('/getUsers',async (req, res) => {
-
     try {
         const allUsers = await UserUtil.getAllUsers()
         res.send({ users: allUsers })        
@@ -116,8 +118,6 @@ userController.get('/getUsers',async (req, res) => {
         console.log(error)
         res.status(500).send('Server error')
     }
-
-
 })
 
 
